@@ -1,6 +1,8 @@
 
 (function (global) {
 
+  var timeOver = document.querySelector('#timeOver');
+
 // cache DOM elements
   var elements = {
     init: function elInit() {
