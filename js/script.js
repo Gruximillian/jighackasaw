@@ -12,9 +12,9 @@
 
 
 
-    
 
-  /******************************************************  
+
+  /******************************************************
   //EVENTS
   ******************************************************/
 
@@ -58,7 +58,7 @@
     }
 
 
-  // DRAG AND DROP 
+  // DRAG AND DROP
   // Identify draggable items and define its data
   var startDrag = {
 
@@ -91,12 +91,17 @@
     },
     cacheDOM: function () {
       this.tray = document.getElementById("tray");
+      this.cell = document.getElementsByClassName("hc-cell");
     },
     bindEvents: function () {
       this.tray.addEventListener("dragenter", this.enterZone);
       this.tray.addEventListener("dragleave", this.leaveZone);
       this.tray.addEventListener("dragover", this.dragItem);
       this.tray.addEventListener("drop", this.dropItem);
+      for (var i = 0; i < this.cell.length; i++) {
+        this.cell[i].addEventListener("dragover", this.dragItem);
+        this.cell[i].addEventListener("drop", this.dropItem);
+      }
     },
     enterZone: function (e) {
       e.target.style.background = "blue";
@@ -112,7 +117,7 @@
       e.preventDefault();
       // Get the id of the piece and add the moved element to the target's DOM
       var movedPiece = e.dataTransfer.getData("text");
-      if (e.target.id === "tray") {
+      if (e.target.id === "tray" || movedPiece === e.target.getAttribute("data-piece")) {
         e.target.appendChild(document.getElementById(movedPiece));
         e.target.style.background = "teal";
       }
