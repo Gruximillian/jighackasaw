@@ -130,3 +130,13 @@ body {
 .hc-cell img {
   width: 100%;
 }
+
+/* ROCHELL'S CSS FOR DRAG/DROP TESTING */
+
+.temporary-tray-need-for-js {
+  background-color: teal;
+  height: 200px;
+  width: 100%;
+  position: relative;
+  z-index: 100;
+}

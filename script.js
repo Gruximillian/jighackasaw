@@ -28,12 +28,12 @@ window,addEventListener('load', function(){
     }, 10);
   }
 
-  puzzle.addEventListener('mousedown', function() {
-    solved.style.opacity = 0.8; 
-  })
-
-  puzzle.addEventListener('mouseup', function() {
-    solved.style.opacity = 0; 
-  })
+  // puzzle.addEventListener('mousedown', function() {
+  //   solved.style.opacity = 0.8;
+  // })
+  //
+  // puzzle.addEventListener('mouseup', function() {
+  //   solved.style.opacity = 0;
+  // })
 
 });
