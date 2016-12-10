@@ -1,0 +1,132 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.container {
+  position: relative;
+}
+
+#timeout {
+  display: none;
+}
+
+.timer {
+  list-style: none;
+}
+
+.timer li {
+  display: inline-block;
+  background-color: #999;
+  text-align: center;
+  line-height: 20px;
+}
+
+.timer .time {
+  width: 20px;
+  height: 20px;
+  padding: 8px 8px;
+  margin: 10px 5px;
+}
+
+.puzzle {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.puzzle img {
+  width: 100%;
+}
+
+.solved {
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  opacity: 0;
+}
+
+.unsolved {
+  position: relative;
+  z-index: 0;
+}
+
+.honeycomb {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 5.2%;
+  padding-bottom: 5.2%;
+  z-index: 5;
+}
+
+.hc-row {
+  position: absolute;
+  width: 100%;
+}
+
+.hc-row-2 {
+  transform: translateY(49%);
+}
+
+.hc-row-3 {
+  transform: translateY(99%);
+}
+
+.hc-row-4 {
+  transform: translateY(150%);
+}
+
+.hc-row-5 {
+  transform: translateY(199%);
+}
+
+.hc-row-6 {
+  transform: translateY(249%);
+}
+
+.hc-row-7 {
+  transform: translateY(298%);
+}
+
+.hc-row-8 {
+  transform: translateY(349%);
+}
+
+.hc-row-9 {
+  transform: translateY(398%);
+}
+
+.hc-row:nth-child(odd) {
+  padding-left: 4.7%;
+}
+
+.hc-row:nth-child(even) {
+  padding-left: 14.4%;
+}
+
+.hc-cell {
+  display: inline-block;
+  position: relative;
+  margin-right: 55px;
+}
+
+.hc-cell:last-child {
+  margin-right: 0;
+}
+
+.hc-cell img {
+  width: 100%;
+}
