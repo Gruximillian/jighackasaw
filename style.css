@@ -437,9 +437,7 @@ input[type="reset"]::-moz-focus-inner {
 #tray {
   text-align: center;
   background-color: teal;
- /* height: 200px;*/
   width: 100%;
   margin:0 auto;
   position: relative;
-/*  z-index: 100;*/
 }

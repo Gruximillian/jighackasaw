@@ -333,6 +333,7 @@
 
           var node = document.createElement('img');
           node.src = array[i].source;
+          // add to board
           this.tray.appendChild(node);
         }
       }
