@@ -2,52 +2,342 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 html {
-  font-size: 62.5%;
+  font-size: 100%;
 }
 
 body {
-  font-size: 1rem;
   margin: 0;
-  background-color: black;
+  font-size: 1rem;
+  line-height: 1.25;
+  background: #222023;
+  color: #fffffc;
 }
 
-.container {
-  position: relative;
-}
-
-#timeout {
+#source-svg {
   display: none;
 }
 
-.timer {
-  list-style: none;
+/* hide visually but still have space taken up */
+
+.temporary-hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
-.timer li {
-  display: inline-block;
-  background-color: #999;
+.scale-up {
+  transform: scale(1.3);
+}
+
+/* hides content visually but allows screenreaders to access it */
+/* add to all radio and checkbox inputs that are custome styles */
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+  /* 1 */
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+<<<<<<< HEAD
+  background-color: black;
+=======
+  overflow: visible;
+  position: absolute;
+  width: auto;
+  white-space: inherit;
+  opacity: 0;
+}
+
+/* btn resets */
+
+/* removes padding and border adding by Firefox  */
+
+button::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner {
+  padding: 0 !important;
+  border: 0 none !important;
+}
+
+.btn {
   text-align: center;
-  line-height: 20px;
-}
-
-.timer .time {
-  width: 20px;
-  height: 20px;
-  padding: 8px 8px;
-  margin: 10px 5px;
-}
-
-.puzzle {
   display: inline-block;
   position: relative;
+  padding: 0.65rem 0.75rem;
+  min-width: 7rem;
+  border: none;
+  color: inherit;
+  font-family: sans-serif;
+  color: #fffffc;
+  font-size: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.btn:focus {
+  outline: none;
+>>>>>>> upstream/master
+}
+
+.container {
+  margin: auto;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ===STYLES FOR START MODAL === */
+
+.start__wrapper {
+  width: 100%;
+  min-height: 100vh;
+  position: fixed;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  background: hsla(280, 30%, 5%, 0.85);
+  transition: all 0.3s ease-in-out;
+}
+
+
+.start__container {
+  max-width: 30rem;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+.start__wrapper.temporary-hide .start__container {
+  transform: translateY(20%);
+}
+
+.start__controls {
+  text-align: center;
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #fffffc;
+  width: 100%;
+}
+
+.start__controls .btn {
+  align-self: flex-end;
+}
+
+.controls__btn {
+  max-width: 5rem;
+  background: #fa6282;
+  color: #fffffc;
+  text-transform: uppercase;
+}
+
+.finished__img {
+  margin: 0;
+  padding: 0;
+  max-height: 20rem;
+  position: relative;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, .1)
+  background: white;
+  text-align: center;
+}
+
+
+.finished__img img {
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* === STYLES FOR DIFFICULTY-LEVEL SWITCH === */
+
+/* switch container */
+.controls__options--switch {
+  max-width: 10rem;
+  flex-grow: 1;
+}
+
+.controls__options--title {
+  margin: 0 0 0.75em 0;
+  text-align: center;
+  font-size: 1.15rem;
+  color: #4c4970;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* what we see as the "switch" */
+
+.controls__options--switch label {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+}
+
+.controls__options--switch .switch__shape {
+  display: block;
+  flex-basis: 5rem;
+  height: 2rem;
+  position: relative;
+  border-radius: 1.25em;
+  background: #c5c5d0;
+  transition: background 400ms 400ms ease-in-out;
+}
+
+.controls__options--switch .switch__shape::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 2rem;
+  height: 2rem;
+  background: #ff567a;
+  border-radius: 50%;
+  box-shadow: 0.125em 0.0625em 0.125em rgba(0, 0, 0, .1);
+  transition: transform 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* on / off container */
+
+.switch-labels__wrap {
+  position: relative;
+  flex-basis: 20%;
+}
+
+.controls__options--level:nth-of-type(2) {
+  opacity: 0;
+}
+
+/* text for level-control */
+
+.controls__options--level {
+  display: block;
+  position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  padding: 0.25em;
+  letter-spacing: 0.5px;
+  font-size: 1.1em;
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: hsla(240, 50%, 20%, .8);
+  text-transform: uppercase;
+  transform: translate(-50%, -50%);
+  transition: opacity 300ms linear;
+}
+
+/* checked styles: text */
+
+.controls__options--switch input:checked ~ label .controls__options--level:nth-of-type(2) {
+  opacity: 1;
+}
+
+.controls__options--switch input:checked ~ label .controls__options--level:nth-of-type(1) {
+  opacity: 0;
+}
+
+/* checked styles: switch */
+
+.controls__options--switch input:checked ~ label .switch__shape {
+  background: #3e3b68;
+}
+
+.controls__options--switch input:checked ~ label .switch__shape::before {
+  box-shadow: none;
+  transform: translateX(3rem);
+}
+
+/* === TIMER STYLES === */
+
+#hex-shape-inner {
+  transform-origin: 50% 50%;
+}
+
+#hex-shape-inner.time-out {
+  fill: hsl(320, 50%, 50%);
+}
+
+#hex-svg-group {
+  width: 7rem;
+  height: 7rem;
+  transform: rotate(90deg);
+  transform-origin: 50% 50%;
+}
+
+.timer__container {
+  max-width: 15rem;
+  padding: 2rem;
+  margin-right: auto;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.timer__message {
+  margin: 0.25rem 0 1.3rem;
+}
+
+.timer__message time {
+  display: block;
+  font-size: 24px;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 10px;
+}
+
+.timer__message time.time-running-out {
+  color: hsl(320, 50%, 50%);
+}
+
+.timer__message time.time-out {
+  color: #045e58;
+}
+
+.timer__btn {
+  display: none;
+  margin-bottom: 0.5rem;
+  background: #76718E;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+
+.puzzle {
+  flex-basis: 60%;
+/*  display: inline-block;
+*/  position: relative;
+/*  left: 50%;
+  transform: translateX(-50%);*/
 }
 
 .puzzle img {
   width: 100%;
 }
+
 
 .solved {
   position: absolute;
@@ -153,21 +443,3 @@ body {
   position: relative;
 /*  z-index: 100;*/
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
