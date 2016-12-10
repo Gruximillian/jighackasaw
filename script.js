@@ -58,12 +58,10 @@
     }
 
 
-
-
-
   // DRAG AND DROP 
   // Identify draggable items and define its data
   var startDrag = {
+
     init: function () {
       this.cacheDOM();
       this.bindEvents();
