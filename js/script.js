@@ -36,6 +36,9 @@
   //   });
 
 
+  
+
+
 
 
 
@@ -123,6 +126,7 @@
   dropZone.init();
 
 
+  //TRAY SHUFFLER OBJECT  
   var trayShuffler = {
 
       //create the elements
@@ -196,8 +200,7 @@
           array[randomIndex] = temporaryValue;
         }
 
-        return array;
-        
+        return array;     
       },
 
       //put pieces on the tray
@@ -209,10 +212,9 @@
         //add pieces to the tray
         for(var i =0; i < array.length; i++) {
 
-          console.log(array[i].name);
           var node = document.createElement('img');
           node.src = array[i].source;
-          tray.appendChild(node);
+          this.tray.appendChild(node);
         }
       }
       // end of trayShuffler object
