@@ -60,9 +60,6 @@ body {
   clip: auto;
   height: auto;
   margin: 0;
-<<<<<<< HEAD
-  background-color: black;
-=======
   overflow: visible;
   position: absolute;
   width: auto;
@@ -99,7 +96,6 @@ input[type="reset"]::-moz-focus-inner {
 
 .btn:focus {
   outline: none;
->>>>>>> upstream/master
 }
 
 .container {

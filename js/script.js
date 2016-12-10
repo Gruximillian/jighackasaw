@@ -101,6 +101,8 @@
       elements.innerhexSVG.setAttribute('transform', 'scale(' + percentLeft + ')');  
     },
     start_timer: function startTimer() {
+      trayShuffler.cacheDOM();
+      trayShuffler.addPieces();
       timer.puzzleTimer = window.setInterval(function(){
         timer.update_time();
         // womp womp; time ran out?
@@ -336,8 +338,8 @@
   }
 
   //run these two functions as part of the 'Start' event
-  trayShuffler.cacheDOM();
-  trayShuffler.addPieces();
+  // trayShuffler.cacheDOM();
+  // trayShuffler.addPieces();
 
 
 
