@@ -60,6 +60,9 @@ body {
   clip: auto;
   height: auto;
   margin: 0;
+<<<<<<< HEAD
+  background-color: black;
+=======
   overflow: visible;
   position: absolute;
   width: auto;
@@ -96,6 +99,7 @@ input[type="reset"]::-moz-focus-inner {
 
 .btn:focus {
   outline: none;
+>>>>>>> upstream/master
 }
 
 .container {
@@ -429,10 +433,11 @@ input[type="reset"]::-moz-focus-inner {
 
 /* ROCHELL'S CSS FOR DRAG/DROP TESTING */
 
-.temporary-tray-need-for-js {
+
+#tray {
+  text-align: center;
   background-color: teal;
-  height: 200px;
   width: 100%;
+  margin:0 auto;
   position: relative;
-  z-index: 100;
 }
