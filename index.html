@@ -1,23 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <meta charset="utf-8">
+  <meta name="description" content="The project assingment for the December Hackathon at Lear.Modern Developer. Team members: Melissa Miller, Rochell Langam, Hsiao-Jung Peng, Joshua Sadlon, Vojislav Grujic">
+  <title>Jigsaw Puzzle</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+  
+  <svg id="source-svg" width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <linearGradient id="grad1" x1="0" y1="3" x2="1.5" y2="4" spreadMethod="repeat">
+        <stop class="stop1" offset="0%"/>
+        <stop class="stop2" offset="80%"/>
+      </linearGradient>
+    </defs>
+    <symbol id="hex-timer-border" viewBox="0 0 275 317">
+      <g id="poly" stroke="none" stroke-width="0" fill="none" fill-rule="evenodd">
+        <polygon class="draw" id="hex-shape" fill="#293571" stroke="none" stroke-width="0" points="137.5 315 1.96702431 236.75 1.96702431 80.25 137.5 2 273.032976 80.25 273.032976 236.75"></polygon>
+      </g>
+      <g id="poly" stroke="none" stroke-width="0" fill="none" fill-rule="evenodd">
+        <polygon class="draw" id="hex-shape-inner" fill="#fa6282" stroke="none" stroke-width="0" points="137.5 315 1.96702431 236.75 1.96702431 80.25 137.5 2 273.032976 80.25 273.032976 236.75"></polygon>
+      </g>
+    </symbol>
+  </svg>
 
   <div class="container">
-
-    <div class="timer">
-      <ul class="timer">
-        <li class="time minutes">10</li>
-        <li> : </li>
-        <li class="time seconds">54</li>
-      </ul>
-      <button class="start">Start</button>
+    <div id="start-modal" class="start__wrapper">
+      <div class="start__container">
+        <figure class="finished__img">       
+          <img src="https://study.moderndeveloper.com/wp-content/uploads/2016/12/Puzzle_solved.png" alt="finished puzzle" />
+        </figure>
+        <section class="start__controls">
+          <button id="start-trigger" class="btn controls__btn">Start</button>
+          <div id="difficulty-switch" class="controls__options--switch">
+            <p id="difficult" class="controls__options--title">
+              Difficult Mode
+            </p>
+            <input type="checkbox" id="difficulty" value="difficult mode" class="visuallyhidden" aria-labelledby="#difficult"/>
+            <label for="difficulty">
+              <div class="switch__shape" aria-hidden="true"></div>
+              <div class="switch-labels__wrap" aria-hidden="true">
+              <div class="controls__options--level">off</div>
+              <div class="controls__options--level">on</div>
+            </label>
+          </div>
+        </section>
+      </div>
     </div>
+    <section class="timer__container">
+      <svg id="hex-svg-group">
+        <use xlink:href="#hex-timer-border"></use>
+      </svg>
+      <p class="timer__message"><time id="time-display">00:00 </time><span id="timer-msg"></span></p>
+      <div class="timer__controls">
+        <button id="stop-trigger" class="btn timer__btn">Stop</button>
+        <button id="hint-trigger" class="btn timer__btn">Hint</button>
+        <button id="restart-trigger" class="btn timer__btn">Start a New Puzzle</button>
+      </div>
+    </section>
 
-    <div class="puzzle">
+    <section class="puzzle">
       <img class="background unsolved" src="puzzle/puzzle_bg_unsolved.png" />
       <img class="background solved" src="puzzle/puzzle_solved.png" />
       <div class="honeycomb">
@@ -81,11 +124,11 @@
           <div class="hc-cell hc-cell-5"><img src="puzzle/piece_41.png" id="p41" /></div>
         </div>
       </div>
-    </div>
+    </section>
+  </div>
 
-    <div id="tray" class="temporary-tray-need-for-js">
+  <div id="tray" class="temporary-tray-need-for-js">
 
-    </div>
   </div>
 
 
