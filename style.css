@@ -79,11 +79,11 @@ body {
 }
 
 .hc-row-2 {
-  transform: translateY(49%);
+  transform: translateY(50%);
 }
 
 .hc-row-3 {
-  transform: translateY(99%);
+  transform: translateY(100%);
 }
 
 .hc-row-4 {
@@ -91,23 +91,23 @@ body {
 }
 
 .hc-row-5 {
-  transform: translateY(199%);
+  transform: translateY(200%);
 }
 
 .hc-row-6 {
-  transform: translateY(249%);
+  transform: translateY(250%);
 }
 
 .hc-row-7 {
-  transform: translateY(298%);
+  transform: translateY(300%);
 }
 
 .hc-row-8 {
-  transform: translateY(349%);
+  transform: translateY(350%);
 }
 
 .hc-row-9 {
-  transform: translateY(398%);
+  transform: translateY(400%);
 }
 
 .hc-row:nth-child(odd) {
@@ -130,4 +130,12 @@ body {
 
 .hc-cell img {
   width: 100%;
+}
+
+.hinted .solved {
+  opacity: 1;
+}
+
+.hinted .hc-cell img {
+  opacity: 0;
 }

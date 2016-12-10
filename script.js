@@ -4,7 +4,7 @@ window,addEventListener('load', function(){
       seconds = document.querySelector('.seconds'),
       timeOver = document.querySelector('#timeout'),
       puzzle = document.querySelector('.puzzle'),
-      solved = document.querySelector('.solved'),
+      hintButton = document.querySelector(''), // add selector for hint button here
       timer;
 
   button.addEventListener('click', function() {
@@ -28,12 +28,12 @@ window,addEventListener('load', function(){
     }, 10);
   }
 
-  puzzle.addEventListener('mousedown', function() {
-    solved.style.opacity = 0.8; 
+  hintButton.addEventListener('mousedown', function() {
+    puzzle.classList.add('hinted');
   })
 
-  puzzle.addEventListener('mouseup', function() {
-    solved.style.opacity = 0; 
+  hintButton.addEventListener('mouseup', function() {
+    puzzle.classList.remove('hinted');
   })
 
 });
