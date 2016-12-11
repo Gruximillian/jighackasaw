@@ -3,6 +3,7 @@
   // Button that enable early check in the difficult mode
   var checkButton = document.querySelector('#check-trigger');
   checkButton.addEventListener('click', function() {
+    solver.init();
     check.alertResult();
   });
 
@@ -209,23 +210,10 @@
           r = Math.floor(w / 5),
           d = 1000;
 
-      // console.log( 'x: ' + x );
-      // console.log( 'y: ' + y );
-      // console.log( 'w: ' + w );
-      // console.log( 'h: ' + h );
-      // console.log( 'cx: ' + cx );
-      // console.log( 'cy: ' + cy );
-      // console.log( 'dx: ' + dx );
-      // console.log( 'dy: ' + dy );
-
       d = Math.ceil(Math.sqrt( Math.pow( dx, 2 ) + Math.pow( dy, 2 ) ));
 
-      // console.log('d: ' + d);
-      // console.log('r: ' + r);
-      // console.log(d < r);
-
       return d < r;
-    },
+    }
   }
 
   // SOLUTION CHECK
@@ -258,6 +246,7 @@
         // STOP TIMER AND OFFER A NEW GAME
       } else if ( solvedPercentage < 100 ) {
         alert('Sorry, you solved only ' + solvedPercentage + '% of the puzzle!');
+        solver.solve();
         // ALLOW SOLVING UNTIL TIME RUNS OUT
       }
     },
@@ -268,6 +257,49 @@
         checkButton.style.display = 'inline-block';
         // MAYBE ADD ELSE IF BLOCK TO HIDE THE BUTTON IF THE USER PLACES BACK AN IMAGE TO THE TRAY
       }
+    }
+  }
+
+  // PUZZLE SOLVER
+  var solver = {
+    init: function() {
+      this.cacheDOM();
+    },
+    cacheDOM: function () {
+      this.puzzlePieces = document.querySelectorAll('img[src*=piece]');
+      this.boardCells = document.querySelectorAll('.hc-cell');
+    },
+    solve: function() {
+      var pieces = Array.prototype.slice.call(this.puzzlePieces),
+          cell,
+          image,
+          id,
+          len,
+          delay,
+          misplaced; // images that are not in appropriate cell
+
+      misplaced = pieces.filter(function(item) {
+        return !check.testCell(item);
+      })
+
+      len = misplaced.length;
+
+      function arrangeImages(n) {
+        delay = window.setTimeout(function() {
+          if ( n < len ) {
+            id = misplaced[n].id;
+            image = misplaced[n].parentNode.removeChild(misplaced[n]);
+            cell = document.querySelector('[data-piece=' + id + ']');
+            cell.appendChild(image);
+            n++;
+          }
+          window.clearTimeout(delay);
+          arrangeImages(n);
+        }, 200);
+      }
+
+      arrangeImages(0);
+
     }
   }
 
@@ -409,9 +441,9 @@
       ];
     },
     // Shuffle the array
-    shuffle: function() {
+    shuffle: function(inputArray) {
       // Save to local var for shuffle
-      var array = this.trayImages;
+      var array = inputArray || this.trayImages;
       var currentIndex = array.length, temporaryValue, randomIndex;
       // While there remain elements to shuffle...
       while (0 !== currentIndex) {
