@@ -102,6 +102,7 @@
 
       trayShuffler.cacheDOM();
       trayShuffler.resetTray();
+      trayShuffler.resetBoard();
       trayShuffler.addPieces();
 
       timer.puzzleTimer = window.setInterval(function(){
@@ -159,6 +160,8 @@
     stop_timer: function resetTimer() {
       //reset tray 
       trayShuffler.resetTray();
+      //reset board
+      trayShuffler.resetBoard();
       // reset timer styles
       timer.reset_timer_styles();
       // reset puzzle data
@@ -348,9 +351,29 @@
           this.tray.removeChild(this.tray.lastChild);
         }
         startDrag.init();
+    },
+
+    resetBoard: function() {
+
+      var boardRows = document.querySelectorAll('div[class*="hc-row hc-row"]');
+
+      // loop through each row
+      for(var i=0; i < boardRows.length; i++) {
+
+        // grab images in each row
+        var images = boardRows[i].getElementsByTagName('img')
+
+        // remove each image
+        for(var j=0; j < images.length; j++) {
+          images[j].parentNode.removeChild(images[j]);
+        }
+      }
     }
     // end of trayShuffler object
   };
+
+  // console.log(document.querySelectorAll('div[class*="hc-row hc-row"]')[0].getElementsByTagName('img'));
+  // console.log(boardRows[0]);
 
   //run these two functions as part of the 'Start' event
   // trayShuffler.cacheDOM();
