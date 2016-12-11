@@ -120,7 +120,7 @@
           return;
         }
 
-      }, 300);
+      }, 1000);
     },
     show_modal: function showHint() {
       puzzleData.hint_active = true;
