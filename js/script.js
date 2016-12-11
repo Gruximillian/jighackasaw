@@ -1,5 +1,4 @@
 (function (global) { 
-
   var timeOver = document.querySelector('#timeover');
 
 // cache DOM elements
@@ -12,6 +11,7 @@
       this.start_modal = document.getElementById('start-modal');
       this.difficulty_input = document.getElementById('difficulty');
       this.difficulty_switch = document.getElementById('difficulty-switch');
+      this.honeycomb = document.querySelector('.puzzle');
       this.time_display = document.getElementById('time-display'); // displays time
       this.time_msg = document.getElementById('timer-msg'); // displays timer text
       this.innerhexSVG = document.getElementById('hex-shape-inner'); // scales down as timer ticks
@@ -241,9 +241,70 @@
     }
   };
 
+  // position cells and rows dynamically on page load and reload; will help with responsive if we choose to do so
+
+  var arrangeBoard = function arrangeC() {
+    var boardDim = elements.honeycomb.getBoundingClientRect();
+    var rows = document.querySelectorAll('.hc-row');
+    var rowOffset = {
+      1: 7.863247863,
+      2: 16.267123288,
+      3: 24.444444444,
+      4: 32.64957265,
+      5: 41.025641026,
+      6: 49.230769231,
+      7: 57.435897436,
+      8: 65.811965812,
+      9: 74.188034188,
+      pieceOffset: {
+        odd: {
+          cell1: 4.723502304,
+          cell2: 24.078341014,
+          cell3: 43.433179724,
+          cell4: 62.788018433,
+          cell5: 82.142857143
+        },
+         even: {
+          cell1: 14.400921659,
+          cell2: 33.755760369,
+          cell3: 53.110599078,
+          cell4: 72.465437788,
+        }
+      }
+    };
+    var row;
+    var rowDim;
+
+    function positionPieces(row, rowDim, rowN) {
+      var pieces = row.querySelectorAll('[data-piece]');
+      var cells = rowN % 2 !== 0 ? 5 : 4; 
+      var oddOrEven = cells === 5 ? 'odd' : 'even';
+      var offset;
+      console.log(cells)
+      for (var c = 0; c < cells; c++) {
+        piece = pieces[c];
+        piece.style.position = 'absolute';
+        pieceDim = piece.getBoundingClientRect();
+        piece.style.left = Math.floor(boardDim.width  * rowOffset.pieceOffset[oddOrEven]['cell' + (c + 1)] / 100) + 'px';
+
+      }
+    }
+
+    for (var i = 0, l = rows.length; i < l; i++) {   
+        row = rows[i];
+        rowDim = row.getBoundingClientRect();
+        temp = Math.floor((rowOffset[i + 1] * boardDim.height / 100)) + 'px';
+        row.style.top = temp;
+        console.log('row')
+        positionPieces(row, rowDim, i + 1);
+    }
+  };
+
   startDrag.init();
   dropZone.init();
   elements.init();
+  arrangeBoard();
+
 
   //TRAY SHUFFLER OBJECT  
   var trayShuffler = {
@@ -338,12 +399,11 @@
       }
     }
     // end of trayShuffler object
-  }
+  };
 
   //run these two functions as part of the 'Start' event
   // trayShuffler.cacheDOM();
   // trayShuffler.addPieces();
-
 
 
   window.addEventListener('mouseup', function(e) {
@@ -356,6 +416,7 @@
     } 
   }, true);
 
+  window.addEventListener('resize', arrangeBoard)
 
 // end of JS file
 })(window);

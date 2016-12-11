@@ -160,7 +160,7 @@ input[type="reset"]::-moz-focus-inner {
   padding: 0;
   max-height: 20rem;
   position: relative;
-  box-shadow: 0 3px 2px rgba(0, 0, 0, .1)
+  box-shadow: 0 3px 2px rgba(0, 0, 0, .1);
   background: white;
   text-align: center;
 }
@@ -292,6 +292,8 @@ input[type="reset"]::-moz-focus-inner {
   font-size: 18px;
   font-family: sans-serif;
   text-align: center;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .timer__message {
@@ -321,19 +323,17 @@ input[type="reset"]::-moz-focus-inner {
   text-transform: uppercase;
 }
 
-
 .puzzle {
-  flex-basis: 60%;
-/*  display: inline-block;
-*/  position: relative;
-/*  left: 50%;
-  transform: translateX(-50%);*/
+  display: inline-block;
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 868px;
 }
 
 .puzzle img {
   width: 100%;
 }
-
 
 .solved {
   position: absolute;
@@ -355,8 +355,6 @@ input[type="reset"]::-moz-focus-inner {
   bottom: 0;
   left: 0;
   width: 100%;
-  padding-top: 5.2%;
-  padding-bottom: 5.2%;
   z-index: 5;
 }
 
@@ -365,67 +363,23 @@ input[type="reset"]::-moz-focus-inner {
   width: 100%;
 }
 
-.hc-row-2 {
-  transform: translateY(50%);
-}
-
-.hc-row-3 {
-  transform: translateY(100%);
-}
-
-.hc-row-4 {
-  transform: translateY(150%);
-}
-
-.hc-row-5 {
-  transform: translateY(200%);
-}
-
-.hc-row-6 {
-  transform: translateY(250%);
-}
-
-.hc-row-7 {
-  transform: translateY(300%);
-}
-
-.hc-row-8 {
-  transform: translateY(350%);
-}
-
-.hc-row-9 {
-  transform: translateY(400%);
-}
-
-.hc-row:nth-child(odd) {
-  padding-left: 4.7%;
-}
-
-.hc-row:nth-child(even) {
-  padding-left: 14.4%;
-}
-
 .hc-cell {
-  display: inline-block;
-  position: relative;
-  margin-right: 55px;
-}
-
-.hc-cell:last-child {
-  margin-right: 0;
+  position: absolute;
+  width: 110px;
+  height: 95px;
 }
 
 .hc-cell img {
   width: 100%;
 }
 
-.hinted .solved {
+/*.hinted .solved {
   opacity: 1;
 }
 
 .hinted .hc-cell img {
   opacity: 0;
-}
+}*/
 
 /* ROCHELL'S CSS FOR DRAG/DROP TESTING */
 
