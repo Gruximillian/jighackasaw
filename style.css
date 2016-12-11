@@ -101,7 +101,7 @@ input[type="reset"]::-moz-focus-inner {
 .container {
   margin: auto;
   position: relative;
-  display: flex;
+  /*display: flex;*/
   justify-content: space-between;
 }
 
@@ -363,16 +363,109 @@ input[type="reset"]::-moz-focus-inner {
   width: 100%;
 }
 
+<<<<<<< HEAD
+=======
+.hc-row-1 {
+  top: 46px;
+}
+
+.hc-row-2 {
+  top: 94px;
+}
+
+.hc-row-3 {
+  top: 143px;
+}
+
+.hc-row-4 {
+  top: 191px;
+}
+
+.hc-row-5 {
+  top: 240px;
+}
+
+.hc-row-6 {
+  top: 288px;
+}
+
+.hc-row-7 {
+  top: 336px;
+}
+
+.hc-row-8 {
+  top: 385px;
+}
+
+.hc-row-9 {
+  top: 434px;
+}
+
+.hc-row:nth-child(odd) {
+  /*padding-left: 4.7%;*/
+}
+
+.hc-row:nth-child(even) {
+  /*padding-left: 14.4%;*/
+}
+
+>>>>>>> upstream-voj/master
 .hc-cell {
   position: absolute;
   width: 110px;
   height: 95px;
+<<<<<<< HEAD
+=======
+}
+
+.hc-cell:last-child {
+  margin-right: 0;
+>>>>>>> upstream-voj/master
 }
 
 .hc-cell img {
   width: 100%;
 }
 
+<<<<<<< HEAD
+=======
+.hc-row:nth-child(odd) .hc-cell-1 {
+  left: 41px;
+}
+
+.hc-row:nth-child(odd) .hc-cell-2 {
+  left: 209px;
+}
+
+.hc-row:nth-child(odd) .hc-cell-3 {
+  left: 377px;
+}
+
+.hc-row:nth-child(odd) .hc-cell-4 {
+  left: 545px;
+}
+
+.hc-row:nth-child(odd) .hc-cell-5 {
+  left: 713px;
+}
+
+.hc-row:nth-child(even) .hc-cell-1 {
+  left: 125px;
+}
+
+.hc-row:nth-child(even) .hc-cell-2 {
+  left: 293px;
+}
+
+.hc-row:nth-child(even) .hc-cell-3 {
+  left: 461px;
+}
+
+.hc-row:nth-child(even) .hc-cell-4 {
+  left: 629px;
+}
+
+>>>>>>> upstream-voj/master
 /*.hinted .solved {
   opacity: 1;
 }
@@ -386,7 +479,6 @@ input[type="reset"]::-moz-focus-inner {
 
 #tray {
   text-align: center;
-  background-color: teal;
   width: 100%;
   margin:0 auto;
   position: relative;
