@@ -1,13 +1,5 @@
 (function (global) {
-
-  // Button that enable early check in the difficult mode
-  var checkButton = document.querySelector('#check-trigger');
-  checkButton.addEventListener('click', function() {
-    solver.init();
-    check.alertResult();
-  });
-
-// Cache DOM elements and trigger
+// Cache DOM elements and trigger 
   var elements = {
     init: function elInit() {
       this.cacheDOM();
@@ -26,6 +18,7 @@
       this.restart_trigger = document.getElementById('restart-trigger');
       this.stop_trigger = document.getElementById('stop-trigger');
       this.timeOver = document.getElementById('timeover');
+      this.checkButton = document.querySelector('#check-trigger');
       this.dropTileBoard = document.getElementById('drop-tile-board');
       this.dropTileTray = document.getElementById('drop-tile-tray');
       this.puzzleSolvedSound = document.getElementById('solved-100');
@@ -44,6 +37,11 @@
           timer.show_modal();
         }
       }, false);
+      // Check solution
+        this.checkButton.addEventListener('click', function() {
+          solver.init();
+          check.alertResult();
+      });
       // Stop timer
       this.stop_trigger.addEventListener('click', function() {
         timer.stop_timer();
@@ -66,6 +64,8 @@
         puzzleData.hints_left = 0;
         // Hide hint button
         elements.hint_trigger.style.display = 'none';
+        // Display check solution button
+        elements.checkButton.style.display = 'inline-block';
       } else {
         // Show hint button
         elements.hint_trigger.style.display = 'inline-block';
@@ -121,14 +121,14 @@
         // Womp womp; time ran out?
         if (!timer.seconds_left && !timer.minutes_left) {
           // Do something to show the user time has run out
-          elements.innerhexSVG.classList.add('time-out');
-          elements.time_msg.textContent = 'What a drag. You ran out of time. 😢';
-          elements.timeOver.play(); // Find an appropriate sound for this
+          // elements.innerhexSVG.classList.add('time-out');
+          // elements.time_msg.textContent = 'What a drag. You ran out of time. 😢';
+          // elements.timeOver.play(); // Find an appropriate sound for this
+          // solver.init();
+          solver.solve();
           check.alertResult();
-          // Reset timer styles
-          timer.reset_timer_styles();
-          // Display restart button
-          elements.restart_trigger.style.display = 'inline-block';
+          timer.stop_timer();
+          timer.restart_puzzle();
           window.clearInterval(timer.puzzleTimer);
           return;
         }
@@ -155,6 +155,8 @@
       elements.stop_trigger.style.display = 'none';
       // Hide hint button
       elements.hint_trigger.style.display = 'none';
+      // Hide check solution button
+      elements.checkButton.style.display = 'none';
       elements.start_trigger.parentNode.classList.remove('temporary-hide');
       // Reset scaled SVG
       elements.innerhexSVG.setAttribute('transform', 'scale(1)');
@@ -247,7 +249,6 @@
         // STOP TIMER AND OFFER A NEW GAME
       } else if ( solvedPercentage < 100 ) {
         alert('Sorry, you solved only ' + solvedPercentage + '% of the puzzle!');
-        solver.solve();
         // ALLOW SOLVING UNTIL TIME RUNS OUT
       }
     },
@@ -255,7 +256,7 @@
       if ( !this.tray.hasChildNodes() && !puzzleData.difficult ) {
         this.alertResult();
       } else if ( !this.tray.hasChildNodes() && puzzleData.difficult ) {
-        checkButton.style.display = 'inline-block';
+        elements.checkButton.style.display = 'inline-block';
         // MAYBE ADD ELSE IF BLOCK TO HIDE THE BUTTON IF THE USER PLACES BACK AN IMAGE TO THE TRAY
       }
     }
@@ -329,6 +330,9 @@
       }
     }
   };
+
+
+  // solver.init();
 
 
   // DRAG AND DROP
@@ -416,8 +420,6 @@
       check.checkTray();
     }
   };
-
-  elements.init();
 
   // TRAY SHUFFLER OBJECT
   var trayShuffler = {
@@ -516,7 +518,6 @@
     // End of trayShuffler object
   };
 
-  dropZone.init();
 
   window.addEventListener('mouseup', function(e) {
     if (puzzleData.hint_active) {
@@ -527,6 +528,14 @@
       }
     }
   }, true);
+
+
+  //initialize objects
+  solver.init();
+  elements.init();
+  dropZone.init();
+
+
 
 // End of JS file
 })(window);
