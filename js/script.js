@@ -1,6 +1,6 @@
 (function (global) {
 
-// Cache DOM elements
+// Cache DOM elements and trigger 
   var elements = {
     init: function elInit() {
       this.cacheDOM();
@@ -51,7 +51,6 @@
     init_timer: function initTimer() {
       puzzleData.difficult = elements.difficulty_input.checked;
       if (puzzleData.difficult) {
-        // Will add some logic to hide the hint button here
         puzzleData.hints_left = 0;
         // Hide hint button
         elements.hint_trigger.style.display = 'none';
@@ -63,7 +62,7 @@
       if (elements.innerhexSVG.classList.contains('time-out')) {
         elements.innerhexSVG.classList.remove('time-out');
       }
-      // If difficult is set to true, time limit is n minutes; otherwise m minutes
+      // If difficult is set to true, time limit is half the normal limit
       this.limit = puzzleData.difficult ? 5 : 10;
       // Seconds we're starting with
       this.total_seconds = this.limit * 60;
@@ -360,7 +359,7 @@
       // Call shuffle and return images array
       var array = trayShuffler.shuffle();
       // Add pieces to the tray
-      for(var i =0; i < array.length; i++) {
+      for(var i = 0; i < array.length; i++) {
         var node = document.createElement('img');
         var nodeID = array[i].id;
         node.setAttribute("id",nodeID);
@@ -378,8 +377,9 @@
     },
     resetBoard: function() {
       var images = document.querySelectorAll('.honeycomb img');
-      for(var i=0; i < images.length; i++) {
-        images[i].parentNode.removeChild(images[i]);
+
+      for(var i= 0; i < images.length; i++) {
+          images[i].parentNode.removeChild(images[i]);
       }
     }
     // End of trayShuffler object
@@ -396,7 +396,6 @@
       }
     }
   }, true);
-
 
 // End of JS file
 })(window);
