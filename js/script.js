@@ -283,19 +283,18 @@
       e.preventDefault();
       // Get the id of the piece and add the moved element to the target's DOM
       var movedPiece = e.dataTransfer.getData("text");
-      if ( !puzzleData.difficult && ( e.target.id === "tray" || movedPiece === e.target.getAttribute("data-piece") ) ) {
+      if ( e.target.parentNode.id === 'tray' || e.target.id === "tray" ) {
+        // whatever the difficulty, allow dropping into tray
+        e.target.parentNode.appendChild(document.getElementById(movedPiece));
+      } else if ( !puzzleData.difficult && movedPiece === e.target.getAttribute("data-piece") ) {
         //easy mode
         console.log('Easy mode!');
         e.target.appendChild(document.getElementById(movedPiece));
-      } else if ( puzzleData.difficult ) {
+      } else if ( puzzleData.difficult && e.target.tagName.toLowerCase() !== 'img' ) {
         // hard mode
         console.log('Hard mode!');
-        if ( e.target.tagName.toLowerCase() !== 'img' ) {
-          // to prevent appending to the image when dropping to tray
-          e.target.appendChild(document.getElementById(movedPiece));
-        } else if ( e.target.parentNode.id === 'tray' ) {
-          e.target.parentNode.appendChild(document.getElementById(movedPiece));
-        }
+        // to prevent appending to the image when dropping to tray
+        e.target.appendChild(document.getElementById(movedPiece));
       }
     }
   };
