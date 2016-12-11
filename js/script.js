@@ -1,7 +1,5 @@
 (function (global) {
 
-  var timeOver = document.querySelector('#timeover');
-
 // cache DOM elements
   var elements = {
     init: function elInit() {
@@ -19,6 +17,7 @@
       this.hint_trigger = document.getElementById('hint-trigger');
       this.restart_trigger = document.getElementById('restart-trigger');
       this.stop_trigger = document.getElementById('stop-trigger');
+      this.timeOver = document.querySelector('#timeover');
     },
     events: function elEvents() {
       // start timer
@@ -111,7 +110,7 @@
           // do something to show the user time has run out
           elements.innerhexSVG.classList.add('time-out');
           elements.time_msg.textContent = 'What a drag. You ran out of time. 😢';
-          timeOver.play(); // Find an appropriate sound for this
+          elements.timeOver.play(); // Find an appropriate sound for this
           // reset timer styles
           timer.reset_timer_styles();
           // display restart button
