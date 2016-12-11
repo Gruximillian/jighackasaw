@@ -7,7 +7,7 @@
     check.alertResult();
   });
 
-// Cache DOM elements and trigger 
+// Cache DOM elements and trigger
   var elements = {
     init: function elInit() {
       this.cacheDOM();
@@ -214,7 +214,7 @@
 
       return d < r;
     }
-  }
+  };
 
   // SOLUTION CHECK
   var check = {
@@ -243,6 +243,7 @@
       if ( solvedPercentage == 100 ) {
         elements.puzzleSolvedSound.play();
         alert('Congratulations! You solved ' + solvedPercentage + '% of the puzzle!');
+        celebration.init();
         // STOP TIMER AND OFFER A NEW GAME
       } else if ( solvedPercentage < 100 ) {
         alert('Sorry, you solved only ' + solvedPercentage + '% of the puzzle!');
@@ -258,7 +259,7 @@
         // MAYBE ADD ELSE IF BLOCK TO HIDE THE BUTTON IF THE USER PLACES BACK AN IMAGE TO THE TRAY
       }
     }
-  }
+  };
 
   // PUZZLE SOLVER
   var solver = {
@@ -280,7 +281,7 @@
 
       misplaced = pieces.filter(function(item) {
         return !check.testCell(item);
-      })
+      });
 
       len = misplaced.length;
 
@@ -295,13 +296,40 @@
           }
           window.clearTimeout(delay);
           arrangeImages(n);
-        }, 200);
+        }, 0.5);
       }
 
       arrangeImages(0);
 
     }
-  }
+  };
+
+  // PUZZLE PIECE CELEBRATION
+  // https://www.youtube.com/watch?v=3GwjfUFyY6M
+  var celebration = {
+    delay: undefined,
+    n: 0,
+    init: function () {
+      this.cacheDOM();
+      this.pieceFlip();
+    },
+    cacheDOM: function () {
+      this.puzzlePieces = document.querySelectorAll('img[src*=piece]');
+    },
+    pieceFlip: function () {
+      if (this.n < this.puzzlePieces.length) {
+        this.delay = window.setTimeout(this.celebrate, 100);
+      }
+    },
+    celebrate: function () {
+      if (celebration.n < celebration.puzzlePieces.length) {
+        celebration.puzzlePieces[celebration.n].setAttribute('class', 'celebrating');
+        celebration.n++;
+        celebration.pieceFlip();
+      }
+    }
+  };
+
 
   // DRAG AND DROP
   // Identify draggable items and define its data
