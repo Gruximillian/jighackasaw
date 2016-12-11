@@ -101,7 +101,7 @@ input[type="reset"]::-moz-focus-inner {
 .container {
   margin: auto;
   position: relative;
-  display: flex;
+  /*display: flex;*/
   justify-content: space-between;
 }
 
@@ -292,6 +292,8 @@ input[type="reset"]::-moz-focus-inner {
   font-size: 18px;
   font-family: sans-serif;
   text-align: center;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .timer__message {
@@ -321,13 +323,12 @@ input[type="reset"]::-moz-focus-inner {
   text-transform: uppercase;
 }
 
-
 .puzzle {
-  flex-basis: 60%;
-/*  display: inline-block;
-*/  position: relative;
-/*  left: 50%;
-  transform: translateX(-50%);*/
+  display: inline-block;
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 868px;
 }
 
 .puzzle img {
@@ -355,8 +356,6 @@ input[type="reset"]::-moz-focus-inner {
   bottom: 0;
   left: 0;
   width: 100%;
-  padding-top: 5.2%;
-  padding-bottom: 5.2%;
   z-index: 5;
 }
 
@@ -365,50 +364,54 @@ input[type="reset"]::-moz-focus-inner {
   width: 100%;
 }
 
+.hc-row-1 {
+  top: 46px;
+}
+
 .hc-row-2 {
-  transform: translateY(50%);
+  top: 94px;
 }
 
 .hc-row-3 {
-  transform: translateY(100%);
+  top: 143px;
 }
 
 .hc-row-4 {
-  transform: translateY(150%);
+  top: 191px;
 }
 
 .hc-row-5 {
-  transform: translateY(200%);
+  top: 240px;
 }
 
 .hc-row-6 {
-  transform: translateY(250%);
+  top: 288px;
 }
 
 .hc-row-7 {
-  transform: translateY(300%);
+  top: 336px;
 }
 
 .hc-row-8 {
-  transform: translateY(350%);
+  top: 385px;
 }
 
 .hc-row-9 {
-  transform: translateY(400%);
+  top: 434px;
 }
 
 .hc-row:nth-child(odd) {
-  padding-left: 4.7%;
+  /*padding-left: 4.7%;*/
 }
 
 .hc-row:nth-child(even) {
-  padding-left: 14.4%;
+  /*padding-left: 14.4%;*/
 }
 
 .hc-cell {
-  display: inline-block;
-  position: relative;
-  margin-right: 55px;
+  position: absolute;
+  width: 110px;
+  height: 95px;
 }
 
 .hc-cell:last-child {
@@ -419,13 +422,49 @@ input[type="reset"]::-moz-focus-inner {
   width: 100%;
 }
 
-.hinted .solved {
+.hc-row:nth-child(odd) .hc-cell-1 {
+  left: 41px;
+}
+
+.hc-row:nth-child(odd) .hc-cell-2 {
+  left: 209px;
+}
+
+.hc-row:nth-child(odd) .hc-cell-3 {
+  left: 377px;
+}
+
+.hc-row:nth-child(odd) .hc-cell-4 {
+  left: 545px;
+}
+
+.hc-row:nth-child(odd) .hc-cell-5 {
+  left: 713px;
+}
+
+.hc-row:nth-child(even) .hc-cell-1 {
+  left: 125px;
+}
+
+.hc-row:nth-child(even) .hc-cell-2 {
+  left: 293px;
+}
+
+.hc-row:nth-child(even) .hc-cell-3 {
+  left: 461px;
+}
+
+.hc-row:nth-child(even) .hc-cell-4 {
+  left: 629px;
+}
+
+/*.hinted .solved {
   opacity: 1;
 }
 
 .hinted .hc-cell img {
   opacity: 0;
-}
+}*/
 
 /* ROCHELL'S CSS FOR DRAG/DROP TESTING */
 
