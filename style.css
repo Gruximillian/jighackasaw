@@ -505,6 +505,11 @@ img[src*=piece].draggable.dragging {
   transition: all 0.1s ease-in-out;
 }
 
+#check-trigger {
+  display: none;
+  background-color: orange;
+}
+
 /* === PUZZLE PIECE TRAY === */
 
 .playing_tray {

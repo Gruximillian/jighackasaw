@@ -1,5 +1,11 @@
 (function (global) {
 
+  // Button that enable early check in the difficult mode
+  var checkButton = document.querySelector('#check-trigger');
+  checkButton.addEventListener('click', function() {
+    check.alertResult();
+  });
+
 // Cache DOM elements and trigger 
   var elements = {
     init: function elInit() {
@@ -104,6 +110,7 @@
       trayShuffler.resetTray();
       trayShuffler.resetBoard();
       trayShuffler.addPieces();
+      check.cacheDOM();
 
       timer.puzzleTimer = window.setInterval(function(){
         timer.update_time();
@@ -113,6 +120,7 @@
           elements.innerhexSVG.classList.add('time-out');
           elements.time_msg.textContent = 'What a drag. You ran out of time. 😢';
           elements.timeOver.play(); // Find an appropriate sound for this
+          check.alertResult();
           // Reset timer styles
           timer.reset_timer_styles();
           // Display restart button
@@ -219,16 +227,9 @@
 
   // SOLUTION CHECK
   var check = {
-    init: function() {
-      this.cacheDOM();
-      // this.bindEvents();
-    },
     cacheDOM: function() {
       this.puzzlePieces = document.querySelectorAll('img[src*=piece]');
       this.tray = document.querySelector('#tray');
-    },
-    bindEvents: function() {
-      // nothing to see here, please move along!
     },
     checkSolution: function() {
       var i, puzzlePieces = this.puzzlePieces,
@@ -245,13 +246,26 @@
     },
     testCell: function(item) {
       return item.id == item.parentNode.getAttribute("data-piece");
+    },
+    alertResult: function() {
+      var solvedPercentage = this.checkSolution();
+      if ( solvedPercentage == 100 ) {
+        alert('Congratulations! You solved ' + solvedPercentage + '% of the puzzle!');
+        // STOP TIMER AND OFFER A NEW GAME
+      } else if ( solvedPercentage < 100 ) {
+        alert('Sorry, you solved only ' + solvedPercentage + '% of the puzzle!');
+        // ALLOW SOLVING UNTIL TIME RUNS OUT
+      }
+    },
+    checkTray: function() {
+      if ( !this.tray.hasChildNodes() && !puzzleData.difficult ) {
+        this.alertResult();
+      } else if ( !this.tray.hasChildNodes() && puzzleData.difficult ) {
+        checkButton.style.display = 'inline-block';
+        // MAYBE ADD ELSE IF BLOCK TO HIDE THE BUTTON IF THE USER PLACES BACK AN IMAGE TO THE TRAY
+      }
     }
   }
-
-  var checkButton = document.querySelector('#check-trigger');
-  checkButton.addEventListener('click', function() {
-    alert('You solved ' + check.checkSolution() + '% of the puzzle!');                                 // CHANGE THIS WITH SOMETHING FANCIER
-  });
 
   // DRAG AND DROP
   // Identify draggable items and define its data
@@ -328,6 +342,8 @@
         // hard mode, dropping allowed on any cell; second condition prevents appending to the other image
         e.target.appendChild(document.getElementById(movedPiece));
       }
+      // check if the tray is empty
+      check.checkTray();
     }
   };
 
@@ -414,13 +430,12 @@
         this.tray.appendChild(node);
       }
       startDrag.init();
-      check.init();
     },
     resetTray: function() {
-        while (this.tray.hasChildNodes()) {
-          this.tray.removeChild(this.tray.lastChild);
-        }
-        startDrag.init();
+      while (this.tray.hasChildNodes()) {
+        this.tray.removeChild(this.tray.lastChild);
+      }
+      startDrag.init();
     },
     resetBoard: function() {
       var images = document.querySelectorAll('.honeycomb img');
