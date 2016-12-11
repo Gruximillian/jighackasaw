@@ -8,6 +8,7 @@
     },
     cacheDOM: function elCacheDOM() {
       this.start_modal = document.getElementById('start-modal');
+      this.board = document.querySelector('.honeycomb');
       this.difficulty_input = document.getElementById('difficulty');
       this.difficulty_switch = document.getElementById('difficulty-switch');
       this.time_display = document.getElementById('time-display'); // Displays time
@@ -17,11 +18,12 @@
       this.hint_trigger = document.getElementById('hint-trigger');
       this.restart_trigger = document.getElementById('restart-trigger');
       this.stop_trigger = document.getElementById('stop-trigger');
-      this.timeOver = document.querySelector('#timeover');
+      this.timeOver = document.getElementById('timeover');
     },
     events: function elEvents() {
       // Start timer
       this.start_trigger.addEventListener('click', function() {
+        elements.board.classList.add('playing');
         elements.start_modal.classList.add('temporary-hide');
         timer.init_timer();
         timer.start_timer();
@@ -175,6 +177,8 @@
       elements.difficulty_input.checked = false;
       // Hide restart button
       elements.restart_trigger.style.display = 'none';
+      // Remove box shadow from board
+      elements.board.classList.remove('playing');
       // Show start modal
       elements.start_modal.classList.remove('temporary-hide');
     }
