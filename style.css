@@ -494,6 +494,11 @@ img[src*=piece] {
   transition: all 0.1s ease-in-out;
 }
 
+img[src*=piece].celebrating {
+  backface-visibility: visible;
+  animation: celebrate 1s 2;
+}
+
 img[src*=piece].draggable {
   opacity: 1;
   transform: scale(1.25);
@@ -505,6 +510,29 @@ img[src*=piece].draggable {
 img[src*=piece].draggable.dragging {
   transform: scale(1.1);
   transition: all 0.1s ease-in-out;
+}
+
+#check-trigger {
+  /*display: none;*/
+  background-color: orange;
+}
+
+@-webkit-keyframes celebrate {
+  0% {
+    transform: rotate3d(1,0,0,0);
+  }
+  100% {
+    transform: rotate3d(1,2,1,360deg);
+  }
+}
+
+@keyframes celebrate {
+  0% {
+    transform: rotate3d(1,0,0,0);
+  }
+  100% {
+    transform: rotate3d(1,2,1,360deg);
+  }
 }
 
 /* === PUZZLE PIECE TRAY === */
