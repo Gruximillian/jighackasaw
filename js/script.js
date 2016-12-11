@@ -280,8 +280,14 @@
       e.preventDefault();
       // Get the id of the piece and add the moved element to the target's DOM
       var movedPiece = e.dataTransfer.getData("text");
-      if (e.target.id === "tray" || movedPiece === e.target.getAttribute("data-piece")) {
+      // if (e.target.id === "tray" || movedPiece === e.target.getAttribute("data-piece")) {
+      //   e.target.appendChild(document.getElementById(movedPiece));
+      // }
+      if ( e.target.tagName.toLowerCase() !== 'img' ) {
+        // to prevent appending to the image when dropping to tray
         e.target.appendChild(document.getElementById(movedPiece));
+      } else if ( e.target.parentNode.id === 'tray' ) {
+        e.target.parentNode.appendChild(document.getElementById(movedPiece));
       }
     }
   };
