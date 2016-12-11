@@ -468,13 +468,24 @@ input[type="reset"]::-moz-focus-inner {
   left: 629px;
 }
 
-/*.hinted .solved {
-  opacity: 1;
+img[src*=piece] {
+  opacity: 0.7;
+  transform: scale(1);
+  transition: all 0.1s ease-in-out;
 }
 
-.hinted .hc-cell img {
-  opacity: 0;
-}*/
+img[src*=piece].draggable {
+  opacity: 1;
+  transform: scale(1.25);
+  cursor: move;
+  transition: all 0.1s ease-in-out;
+  z-index: 1000;
+}
+
+img[src*=piece].draggable.dragging {
+  transform: scale(1.1);
+  transition: all 0.1s ease-in-out;
+}
 
 /* ROCHELL'S CSS FOR DRAG/DROP TESTING */
 

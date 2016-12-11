@@ -180,6 +180,39 @@
     }
   };
 
+  // MOUSE POSITION CALCULATIONS
+  var position = {
+    closeToCenter: function(e) {
+      var x = e.offsetX,
+          y = e.offsetY,
+          w = e.target.clientWidth,
+          h = e.target.clientHeight,
+          cx = Math.round(w / 2),
+          cy = Math.round(h / 2),
+          dx = Math.abs(x - cx),
+          dy = Math.abs(y - cy),
+          r = Math.floor(w / 5),
+          d = 1000;
+
+      // console.log( 'x: ' + x );
+      // console.log( 'y: ' + y );
+      // console.log( 'w: ' + w );
+      // console.log( 'h: ' + h );
+      // console.log( 'cx: ' + cx );
+      // console.log( 'cy: ' + cy );
+      // console.log( 'dx: ' + dx );
+      // console.log( 'dy: ' + dy );
+
+      d = Math.ceil(Math.sqrt( Math.pow( dx, 2 ) + Math.pow( dy, 2 ) ));
+
+      // console.log('d: ' + d);
+      // console.log('r: ' + r);
+      // console.log(d < r);
+
+      return d < r;
+    },
+  }
+
   // DRAG AND DROP
   // Identify draggable items and define its data
   var startDrag = {
@@ -192,17 +225,31 @@
     },
     bindEvents: function () {
       for (var i = 0; i < this.puzzlePieces.length; i++) {
+        this.puzzlePieces[i].addEventListener('mousemove', this.setDragIndicator);
         this.puzzlePieces[i].addEventListener("mousedown", this.applyAttr);
         this.puzzlePieces[i].addEventListener("dragstart", this.dragStart);
       }
     },
-    applyAttr: function () {
-      this.setAttribute("draggable", "true");
+    applyAttr: function (e) {
+      if ( position.closeToCenter(e) ) {
+        e.target.classList.add('dragging');
+        this.setAttribute("draggable", "true");
+      } else {
+        this.setAttribute("draggable", "false");
+      }
     },
     dragStart: function (e) {
       e.dataTransfer.setData("text/plain", e.target.id);
       console.log(e.target.id);
       e.dataTransfer.dropEffect = "move";
+    },
+    setDragIndicator: function(e) {
+      if ( position.closeToCenter(e) ) {
+        e.target.classList.add('draggable');
+      } else {
+        e.target.classList.remove('draggable');
+      }
+      // console.log('e.offsetX: ', e.offsetX, ' | e.offsetY: ', e.offsetY);
     }
   };
 
@@ -330,6 +377,7 @@
     },
     resetBoard: function() {
       var images = document.querySelectorAll('.honeycomb img');
+
       for(var i= 0; i < images.length; i++) {
           images[i].parentNode.removeChild(images[i]);
       }
