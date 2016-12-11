@@ -354,31 +354,16 @@
 
     resetBoard: function() {
 
-      var boardRows = document.querySelectorAll('div[class*="hc-row hc-row"]');
+      var images = document.querySelectorAll('.honeycomb img');
 
-      // loop through each row
-      for(var i=0; i < boardRows.length; i++) {
+      for(var i=0; i < images.length; i++) {
 
-        // grab images in each row
-        var images = boardRows[i].getElementsByTagName('img')
-
-        // remove each image
-        for(var j=0; j < images.length; j++) {
-          images[j].parentNode.removeChild(images[j]);
-        }
+          images[i].parentNode.removeChild(images[i]);
       }
     }
     // end of trayShuffler object
   };
 
-  // console.log(document.querySelectorAll('div[class*="hc-row hc-row"]')[0].getElementsByTagName('img'));
-  // console.log(boardRows[0]);
-
-  //run these two functions as part of the 'Start' event
-  // trayShuffler.cacheDOM();
-  // trayShuffler.addPieces();
-
-  // startDrag.init();
   dropZone.init();
 
   window.addEventListener('mouseup', function(e) {
