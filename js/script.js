@@ -386,6 +386,7 @@
       }
       // check if the tray is empty
       check.checkTray();
+      dropZone.tray.scrollIntoView({block: 'end', behavior: 'smooth'});
     }
   };
 
