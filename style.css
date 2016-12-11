@@ -18,13 +18,12 @@ body {
   color: rgb(244, 244, 244);
 }
 
-/* hide the source SVG so it doesn't take up space on the page*/
-#source-svg {
+/* hide the element completely; hides from screen readers and removes from document flow */
+.hidden {
   display: none;
 }
 
 /* hide visually but still have space taken up */
-
 .temporary-hide {
   opacity: 0;
   visibility: hidden;
@@ -340,6 +339,10 @@ input[type="reset"]::-moz-focus-inner {
   cursor: help;
 }
 
+.timer__btn.check {
+  background-color: #fa6282;
+}
+
 .timer__btn:hover {
   background-color: #9e99b5;
 }
@@ -502,11 +505,6 @@ img[src*=piece].draggable {
 img[src*=piece].draggable.dragging {
   transform: scale(1.1);
   transition: all 0.1s ease-in-out;
-}
-
-#check-trigger {
-  /*display: none;*/
-  background-color: orange;
 }
 
 /* === PUZZLE PIECE TRAY === */
