@@ -334,7 +334,7 @@
       //add pieces to the tray
       for(var i =0; i < array.length; i++) {
         var node = document.createElement('img');
-        var nodeID = this.trayImages[i].id;
+        var nodeID = array[i].id;
         node.setAttribute("id",nodeID);
         node.src = array[i].source;
         // add to board
