@@ -99,9 +99,11 @@
       elements.innerhexSVG.setAttribute('transform', 'scale(' + percentLeft + ')');  
     },
     start_timer: function startTimer() {
+
       trayShuffler.cacheDOM();
       trayShuffler.resetTray();
       trayShuffler.addPieces();
+
       timer.puzzleTimer = window.setInterval(function(){
         timer.update_time();
         // womp womp; time ran out?
