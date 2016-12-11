@@ -75,7 +75,7 @@
         elements.innerhexSVG.classList.remove('time-out');
       }
       // If difficult is set to true, time limit is half the normal limit
-      this.limit = puzzleData.difficult ? 5 : 10;
+      this.limit = puzzleData.difficult ? 1 : 1;
       // Seconds we're starting with
       this.total_seconds = this.limit * 60;
       // Each second, decrement this; we'll use this one value to update time
@@ -121,14 +121,14 @@
         // Womp womp; time ran out?
         if (!timer.seconds_left && !timer.minutes_left) {
           // Do something to show the user time has run out
-          elements.innerhexSVG.classList.add('time-out');
-          elements.time_msg.textContent = 'What a drag. You ran out of time. 😢';
-          elements.timeOver.play(); // Find an appropriate sound for this
+          // elements.innerhexSVG.classList.add('time-out');
+          // elements.time_msg.textContent = 'What a drag. You ran out of time. 😢';
+          // elements.timeOver.play(); // Find an appropriate sound for this
+          // solver.init();
+          solver.solve();
           check.alertResult();
-          // Reset timer styles
-          timer.reset_timer_styles();
-          // Display restart button
-          elements.restart_trigger.style.display = 'inline-block';
+          timer.stop_timer();
+          timer.restart_puzzle();
           window.clearInterval(timer.puzzleTimer);
           return;
         }
@@ -246,7 +246,6 @@
         // STOP TIMER AND OFFER A NEW GAME
       } else if ( solvedPercentage < 100 ) {
         alert('Sorry, you solved only ' + solvedPercentage + '% of the puzzle!');
-        solver.solve();
         // ALLOW SOLVING UNTIL TIME RUNS OUT
       }
     },
@@ -302,6 +301,9 @@
 
     }
   }
+
+  // solver.init();
+
 
   // DRAG AND DROP
   // Identify draggable items and define its data
@@ -388,8 +390,6 @@
       check.checkTray();
     }
   };
-
-  elements.init();
 
   // TRAY SHUFFLER OBJECT
   var trayShuffler = {
@@ -488,7 +488,6 @@
     // End of trayShuffler object
   };
 
-  dropZone.init();
 
   window.addEventListener('mouseup', function(e) {
     if (puzzleData.hint_active) {
@@ -499,6 +498,21 @@
       }
     }
   }, true);
+
+
+  // initialize objects 
+  solver.init();
+  elements.init();
+  dropZone.init();
+
+
+
+
+
+
+
+
+
 
 // End of JS file
 })(window);
