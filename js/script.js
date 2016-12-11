@@ -1,12 +1,5 @@
 (function (global) {
 
-  // Button that enable early check in the difficult mode
-  var checkButton = document.querySelector('#check-trigger');
-  checkButton.addEventListener('click', function() {
-    solver.init();
-    check.alertResult();
-  });
-
 // Cache DOM elements and trigger 
   var elements = {
     init: function elInit() {
@@ -26,6 +19,7 @@
       this.restart_trigger = document.getElementById('restart-trigger');
       this.stop_trigger = document.getElementById('stop-trigger');
       this.timeOver = document.getElementById('timeover');
+      this.checkButton = document.querySelector('#check-trigger');
       this.dropTileBoard = document.getElementById('drop-tile-board');
       this.dropTileTray = document.getElementById('drop-tile-tray');
       this.puzzleSolvedSound = document.getElementById('solved-100');
@@ -44,6 +38,11 @@
           timer.show_modal();
         }
       }, false);
+      // Check puzzle solution
+      this.checkButton.addEventListener('click', function() {
+        solver.init();
+        check.alertResult();
+      });
       // Stop timer
       this.stop_trigger.addEventListener('click', function() {
         timer.stop_timer();
@@ -66,6 +65,8 @@
         puzzleData.hints_left = 0;
         // Hide hint button
         elements.hint_trigger.style.display = 'none';
+        // Display check solution button
+        elements.checkButton.style.display = 'inline-block';
       } else {
         // Show hint button
         elements.hint_trigger.style.display = 'inline-block';
@@ -155,6 +156,9 @@
       elements.stop_trigger.style.display = 'none';
       // Hide hint button
       elements.hint_trigger.style.display = 'none';
+      // Hide check solution button
+      elements.checkButton.style.display = 'none';
+      
       elements.start_trigger.parentNode.classList.remove('temporary-hide');
       // Reset scaled SVG
       elements.innerhexSVG.setAttribute('transform', 'scale(1)');
@@ -253,7 +257,7 @@
       if ( !this.tray.hasChildNodes() && !puzzleData.difficult ) {
         this.alertResult();
       } else if ( !this.tray.hasChildNodes() && puzzleData.difficult ) {
-        checkButton.style.display = 'inline-block';
+        elements.checkButton.style.display = 'inline-block';
         // MAYBE ADD ELSE IF BLOCK TO HIDE THE BUTTON IF THE USER PLACES BACK AN IMAGE TO THE TRAY
       }
     }
@@ -388,6 +392,7 @@
       }
       // check if the tray is empty
       check.checkTray();
+      dropZone.tray.scrollIntoView({block: 'end', behavior: 'smooth'});
     }
   };
 
