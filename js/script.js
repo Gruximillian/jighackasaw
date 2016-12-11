@@ -1,5 +1,12 @@
 (function (global) {
 
+  // Button that enable early check in the difficult mode
+  var checkButton = document.querySelector('#check-trigger');
+  checkButton.addEventListener('click', function() {
+    solver.init();
+    check.alertResult();
+  });
+
 // Cache DOM elements and trigger 
   var elements = {
     init: function elInit() {
@@ -19,7 +26,6 @@
       this.restart_trigger = document.getElementById('restart-trigger');
       this.stop_trigger = document.getElementById('stop-trigger');
       this.timeOver = document.getElementById('timeover');
-      this.checkButton = document.querySelector('#check-trigger');
       this.dropTileBoard = document.getElementById('drop-tile-board');
       this.dropTileTray = document.getElementById('drop-tile-tray');
       this.puzzleSolvedSound = document.getElementById('solved-100');
@@ -38,11 +44,6 @@
           timer.show_modal();
         }
       }, false);
-      // Check puzzle solution
-      this.checkButton.addEventListener('click', function() {
-        solver.init();
-        check.alertResult();
-      });
       // Stop timer
       this.stop_trigger.addEventListener('click', function() {
         timer.stop_timer();
@@ -65,8 +66,6 @@
         puzzleData.hints_left = 0;
         // Hide hint button
         elements.hint_trigger.style.display = 'none';
-        // Display check solution button
-        elements.checkButton.style.display = 'inline-block';
       } else {
         // Show hint button
         elements.hint_trigger.style.display = 'inline-block';
@@ -76,7 +75,7 @@
         elements.innerhexSVG.classList.remove('time-out');
       }
       // If difficult is set to true, time limit is half the normal limit
-      this.limit = puzzleData.difficult ? 1 : 1;
+      this.limit = puzzleData.difficult ? 5 : 10;
       // Seconds we're starting with
       this.total_seconds = this.limit * 60;
       // Each second, decrement this; we'll use this one value to update time
@@ -156,9 +155,6 @@
       elements.stop_trigger.style.display = 'none';
       // Hide hint button
       elements.hint_trigger.style.display = 'none';
-      // Hide check solution button
-      elements.checkButton.style.display = 'none';
-      
       elements.start_trigger.parentNode.classList.remove('temporary-hide');
       // Reset scaled SVG
       elements.innerhexSVG.setAttribute('transform', 'scale(1)');
@@ -257,7 +253,7 @@
       if ( !this.tray.hasChildNodes() && !puzzleData.difficult ) {
         this.alertResult();
       } else if ( !this.tray.hasChildNodes() && puzzleData.difficult ) {
-        elements.checkButton.style.display = 'inline-block';
+        checkButton.style.display = 'inline-block';
         // MAYBE ADD ELSE IF BLOCK TO HIDE THE BUTTON IF THE USER PLACES BACK AN IMAGE TO THE TRAY
       }
     }
@@ -392,7 +388,6 @@
       }
       // check if the tray is empty
       check.checkTray();
-      dropZone.tray.scrollIntoView({block: 'end', behavior: 'smooth'});
     }
   };
 
@@ -505,17 +500,10 @@
   }, true);
 
 
-  // initialize objects 
+  //initialize objects 
   solver.init();
   elements.init();
   dropZone.init();
-
-
-
-
-
-
-
 
 
 
