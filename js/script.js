@@ -157,7 +157,7 @@
       puzzleData.hints_left = 3;
     },
     stop_timer: function resetTimer() {
-      //reset tray 
+      //reset tray
       trayShuffler.resetTray();
       //reset board
       trayShuffler.resetBoard();
@@ -236,6 +236,7 @@
     dragItem: function (e) {
       e.preventDefault();
       e.dataTransfer.dropEffect = "move";
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
     },
     dropItem: function (e) {
       e.preventDefault();
