@@ -2,9 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="The project assingment for the December Hackathon at Lear.Modern Developer. Team members: Melissa Miller, Rochell Langam, Hsiao-Jung Peng, Joshua Sadlon, Vojislav Grujic">
+  <meta name="description" content="The project assingment for the December Hackathon at Learn.Modern Developer. Team members: Melissa Miller, Rochell Langam, Hsiao-Jung Peng, Joshua Sadlon, Vojislav Grujic">
   <title>Jigsaw Puzzle</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -29,7 +30,7 @@
     <div id="start-modal" class="start__wrapper">
       <div class="start__container">
         <figure class="finished__img">
-          <img src="https://study.moderndeveloper.com/wp-content/uploads/2016/12/Puzzle_solved.png" alt="finished puzzle" />
+          <img src="puzzle/puzzle_solved.png" alt="finished puzzle" />
         </figure>
         <section class="start__controls">
           <button id="start-trigger" class="btn controls__btn">Start</button>
@@ -52,7 +53,10 @@
       <svg id="hex-svg-group">
         <use xlink:href="#hex-timer-border"></use>
       </svg>
-      <p class="timer__message"><time id="time-display">00:00 </time><span id="timer-msg"></span></p>
+      <p class="timer__message">
+        <time id="time-display">00:00</time>
+        <span id="timer-msg"></span>
+      </p>
       <div class="timer__controls">
         <button id="stop-trigger" class="btn timer__btn">Stop</button>
         <button id="hint-trigger" class="btn timer__btn">Hint</button>
@@ -61,8 +65,8 @@
     </section>
 
     <section class="puzzle">
-      <img class="background unsolved" src="puzzle/puzzle_bg_unsolved.png" />
-      <img class="background solved" src="puzzle/puzzle_solved.png" />
+      <img class="background unsolved" src="puzzle/puzzle_bg_unsolved.png" alt="unsolved puzzle" />
+      <img class="background solved" src="puzzle/puzzle_solved.png" alt="solved puzzle" />
       <div class="honeycomb">
         <div class="hc-row hc-row-1" data-row="1">
           <div class="hc-cell hc-cell-1" data-piece="p01"></div> <!-- <img src="puzzle/piece_01.png" id="p01" />-->
