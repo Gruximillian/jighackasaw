@@ -213,6 +213,42 @@
     },
   }
 
+  // SOLUTION CHECK
+  var check = {
+    init: function() {
+      this.cacheDOM();
+      // this.bindEvents();
+    },
+    cacheDOM: function() {
+      this.puzzlePieces = document.querySelectorAll('img[src*=piece]');
+      this.tray = document.querySelector('#tray');
+    },
+    bindEvents: function() {
+      // nothing to see here, please move along!
+    },
+    checkSolution: function() {
+      var i, puzzlePieces = this.puzzlePieces,
+          len = puzzlePieces.length,
+          correctness = 0;
+
+      for ( i = 0; i < len; i++ ) {
+        if ( this.testCell(puzzlePieces[i]) ) {
+          correctness++;
+        }
+      }
+      correctness = ((correctness / len) * 100).toFixed(2);
+      return correctness; // percentage of correct placements
+    },
+    testCell: function(item) {
+      return item.id == item.parentNode.getAttribute("data-piece");
+    }
+  }
+
+  var checkButton = document.querySelector('#check-trigger');
+  checkButton.addEventListener('click', function() {
+    alert('You solved ' + check.checkSolution() + '% of the puzzle!');                                 // CHANGE THIS WITH SOMETHING FANCIER
+  });
+
   // DRAG AND DROP
   // Identify draggable items and define its data
   var startDrag = {
@@ -240,7 +276,7 @@
     },
     dragStart: function (e) {
       e.dataTransfer.setData("text/plain", e.target.id);
-      console.log(e.target.id);
+      // console.log(e.target.id);
       e.dataTransfer.dropEffect = "move";
     },
     setDragIndicator: function(e) {
@@ -249,7 +285,6 @@
       } else {
         e.target.classList.remove('draggable');
       }
-      // console.log('e.offsetX: ', e.offsetX, ' | e.offsetY: ', e.offsetY);
     }
   };
 
@@ -283,13 +318,10 @@
         // whatever the difficulty, allow dropping into tray
         e.target.parentNode.appendChild(document.getElementById(movedPiece));
       } else if ( !puzzleData.difficult && movedPiece === e.target.getAttribute("data-piece") ) {
-        //easy mode
-        console.log('Easy mode!');
+        //easy mode, dropping allowed only into correct cells
         e.target.appendChild(document.getElementById(movedPiece));
       } else if ( puzzleData.difficult && e.target.tagName.toLowerCase() !== 'img' ) {
-        // hard mode
-        console.log('Hard mode!');
-        // to prevent appending to the image when dropping to tray
+        // hard mode, dropping allowed on any cell; second condition prevents appending to the other image
         e.target.appendChild(document.getElementById(movedPiece));
       }
     }
@@ -378,6 +410,7 @@
         this.tray.appendChild(node);
       }
       startDrag.init();
+      check.init();
     },
     resetTray: function() {
         while (this.tray.hasChildNodes()) {
