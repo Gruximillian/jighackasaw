@@ -96,7 +96,7 @@
     },
     progressHexBorder: function updateTimerProgress(el) {
       var percentLeft = (this.seconds_left * 100) / this.total_seconds / 100;
-      elements.innerhexSVG.setAttribute('transform', 'scale(' + percentLeft + ')');  
+      elements.innerhexSVG.setAttribute('transform', 'scale(' + percentLeft + ')');
     },
     start_timer: function startTimer() {
       trayShuffler.cacheDOM();
@@ -134,12 +134,12 @@
     },
     hints_done: function hintsDone() {
       this.hide_modal();
-      elements.hint_trigger.style.display = 'none'; 
+      elements.hint_trigger.style.display = 'none';
     },
     reset_timer_styles: function resetTStyles() {
-      // hide stop button 
+      // hide stop button
       elements.stop_trigger.style.display = 'none';
-      // hide hint button 
+      // hide hint button
       elements.hint_trigger.style.display = 'none';
       elements.start_trigger.parentNode.classList.remove('temporary-hide');
       // reset scaled SVG
@@ -150,7 +150,7 @@
       } else if (elements.time_display.classList.contains('time-out')) {
         elements.time_display.classList.remove('time-out');
       }
-    }, 
+    },
     reset_puzzle_data: function timerDataReset() {
       puzzleData.hints_left = 3;
     },
@@ -176,7 +176,6 @@
     }
   };
 
-
   // DRAG AND DROP
   // Identify draggable items and define its data
   var startDrag = {
@@ -198,6 +197,7 @@
     },
     dragStart: function (e) {
       e.dataTransfer.setData("text/plain", e.target.id);
+      console.log(e.target.id);
       e.dataTransfer.dropEffect = "move";
     }
   };
@@ -222,10 +222,10 @@
       }
     },
     enterZone: function (e) {
-      e.target.style.background = "blue";
+      // e.target.style.background = "blue";
     },
     leaveZone: function (e) {
-      e.target.style.background = "teal";
+      // e.target.style.background = "teal";
     },
     dragItem: function (e) {
       e.preventDefault();
@@ -237,16 +237,14 @@
       var movedPiece = e.dataTransfer.getData("text");
       if (e.target.id === "tray" || movedPiece === e.target.getAttribute("data-piece")) {
         e.target.appendChild(document.getElementById(movedPiece));
-        e.target.style.background = "teal";
+        // e.target.style.background = "teal";
       }
     }
   };
 
-  startDrag.init();
-  dropZone.init();
   elements.init();
 
-  //TRAY SHUFFLER OBJECT  
+  //TRAY SHUFFLER OBJECT
   var trayShuffler = {
 
     //create the elements
@@ -255,47 +253,47 @@
       this.tray =  document.getElementById('tray');
 
       this.trayImages = [
-        {name: 'piece_01.png', source: 'puzzle/piece_01.png'},
-        {name: 'piece_02.png', source: 'puzzle/piece_02.png'},
-        {name: 'piece_03.png', source: 'puzzle/piece_03.png'},
-        {name: 'piece_04.png', source: 'puzzle/piece_04.png'},
-        {name: 'piece_05.png', source: 'puzzle/piece_05.png'},
-        {name: 'piece_06.png', source: 'puzzle/piece_06.png'},
-        {name: 'piece_07.png', source: 'puzzle/piece_07.png'},
-        {name: 'piece_08.png', source: 'puzzle/piece_08.png'},
-        {name: 'piece_09.png', source: 'puzzle/piece_09.png'},
-        {name: 'piece_10.png', source: 'puzzle/piece_10.png'},
-        {name: 'piece_11.png', source: 'puzzle/piece_11.png'},
-        {name: 'piece_12.png', source: 'puzzle/piece_12.png'},
-        {name: 'piece_13.png', source: 'puzzle/piece_13.png'},
-        {name: 'piece_14.png', source: 'puzzle/piece_14.png'},
-        {name: 'piece_15.png', source: 'puzzle/piece_15.png'},
-        {name: 'piece_16.png', source: 'puzzle/piece_16.png'},
-        {name: 'piece_17.png', source: 'puzzle/piece_17.png'},
-        {name: 'piece_18.png', source: 'puzzle/piece_18.png'},
-        {name: 'piece_19.png', source: 'puzzle/piece_19.png'},
-        {name: 'piece_20.png', source: 'puzzle/piece_20.png'},
-        {name: 'piece_21.png', source: 'puzzle/piece_21.png'},
-        {name: 'piece_22.png', source: 'puzzle/piece_22.png'},
-        {name: 'piece_23.png', source: 'puzzle/piece_23.png'},
-        {name: 'piece_24.png', source: 'puzzle/piece_24.png'},
-        {name: 'piece_25.png', source: 'puzzle/piece_25.png'},
-        {name: 'piece_26.png', source: 'puzzle/piece_26.png'},
-        {name: 'piece_27.png', source: 'puzzle/piece_27.png'},
-        {name: 'piece_28.png', source: 'puzzle/piece_28.png'},
-        {name: 'piece_29.png', source: 'puzzle/piece_29.png'},
-        {name: 'piece_30.png', source: 'puzzle/piece_30.png'},
-        {name: 'piece_31.png', source: 'puzzle/piece_31.png'},
-        {name: 'piece_32.png', source: 'puzzle/piece_32.png'},
-        {name: 'piece_33.png', source: 'puzzle/piece_33.png'},
-        {name: 'piece_34.png', source: 'puzzle/piece_34.png'},
-        {name: 'piece_35.png', source: 'puzzle/piece_35.png'},
-        {name: 'piece_36.png', source: 'puzzle/piece_36.png'},
-        {name: 'piece_37.png', source: 'puzzle/piece_37.png'},
-        {name: 'piece_38.png', source: 'puzzle/piece_38.png'},
-        {name: 'piece_39.png', source: 'puzzle/piece_39.png'},
-        {name: 'piece_40.png', source: 'puzzle/piece_40.png'},
-        {name: 'piece_41.png', source: 'puzzle/piece_41.png'}
+        {name: 'piece_01.png', id: "p01", source: 'puzzle/piece_01.png'},
+        {name: 'piece_02.png', id: "p02", source: 'puzzle/piece_02.png'},
+        {name: 'piece_03.png', id: "p03", source: 'puzzle/piece_03.png'},
+        {name: 'piece_04.png', id: "p04", source: 'puzzle/piece_04.png'},
+        {name: 'piece_05.png', id: "p05", source: 'puzzle/piece_05.png'},
+        {name: 'piece_06.png', id: "p06", source: 'puzzle/piece_06.png'},
+        {name: 'piece_07.png', id: "p07", source: 'puzzle/piece_07.png'},
+        {name: 'piece_08.png', id: "p08", source: 'puzzle/piece_08.png'},
+        {name: 'piece_09.png', id: "p09", source: 'puzzle/piece_09.png'},
+        {name: 'piece_10.png', id: "p10", source: 'puzzle/piece_10.png'},
+        {name: 'piece_11.png', id: "p11", source: 'puzzle/piece_11.png'},
+        {name: 'piece_12.png', id: "p12", source: 'puzzle/piece_12.png'},
+        {name: 'piece_13.png', id: "p13", source: 'puzzle/piece_13.png'},
+        {name: 'piece_14.png', id: "p14", source: 'puzzle/piece_14.png'},
+        {name: 'piece_15.png', id: "p15", source: 'puzzle/piece_15.png'},
+        {name: 'piece_16.png', id: "p16", source: 'puzzle/piece_16.png'},
+        {name: 'piece_17.png', id: "p17", source: 'puzzle/piece_17.png'},
+        {name: 'piece_18.png', id: "p18", source: 'puzzle/piece_18.png'},
+        {name: 'piece_19.png', id: "p19", source: 'puzzle/piece_19.png'},
+        {name: 'piece_20.png', id: "p20", source: 'puzzle/piece_20.png'},
+        {name: 'piece_21.png', id: "p21", source: 'puzzle/piece_21.png'},
+        {name: 'piece_22.png', id: "p22", source: 'puzzle/piece_22.png'},
+        {name: 'piece_23.png', id: "p23", source: 'puzzle/piece_23.png'},
+        {name: 'piece_24.png', id: "p24", source: 'puzzle/piece_24.png'},
+        {name: 'piece_25.png', id: "p25", source: 'puzzle/piece_25.png'},
+        {name: 'piece_26.png', id: "p26", source: 'puzzle/piece_26.png'},
+        {name: 'piece_27.png', id: "p27", source: 'puzzle/piece_27.png'},
+        {name: 'piece_28.png', id: "p28", source: 'puzzle/piece_28.png'},
+        {name: 'piece_29.png', id: "p29", source: 'puzzle/piece_29.png'},
+        {name: 'piece_30.png', id: "p30", source: 'puzzle/piece_30.png'},
+        {name: 'piece_31.png', id: "p31", source: 'puzzle/piece_31.png'},
+        {name: 'piece_32.png', id: "p32", source: 'puzzle/piece_32.png'},
+        {name: 'piece_33.png', id: "p33", source: 'puzzle/piece_33.png'},
+        {name: 'piece_34.png', id: "p34", source: 'puzzle/piece_34.png'},
+        {name: 'piece_35.png', id: "p35", source: 'puzzle/piece_35.png'},
+        {name: 'piece_36.png', id: "p36", source: 'puzzle/piece_36.png'},
+        {name: 'piece_37.png', id: "p37", source: 'puzzle/piece_37.png'},
+        {name: 'piece_38.png', id: "p38", source: 'puzzle/piece_38.png'},
+        {name: 'piece_39.png', id: "p39", source: 'puzzle/piece_39.png'},
+        {name: 'piece_40.png', id: "p40", source: 'puzzle/piece_40.png'},
+        {name: 'piece_41.png', id: "p41", source: 'puzzle/piece_41.png'}
       ];
     },
 
@@ -304,7 +302,7 @@
 
       //save to local var for shuffle
       var array = this.trayImages;
-      
+
       var currentIndex = array.length, temporaryValue, randomIndex;
 
       // While there remain elements to shuffle...
@@ -320,38 +318,42 @@
         array[randomIndex] = temporaryValue;
       }
 
-      return array;     
+      return array;
     },
 
     //put pieces on the tray
     addPieces: function() {
 
-      //call shuffle and return images array 
+      //call shuffle and return images array
       var array = trayShuffler.shuffle();
 
       //add pieces to the tray
       for(var i =0; i < array.length; i++) {
         var node = document.createElement('img');
+        var nodeID = this.trayImages[i].id;
+        node.setAttribute("id",nodeID);
         node.src = array[i].source;
         // add to board
         this.tray.appendChild(node);
       }
+      startDrag.init();
     },
 
     resetTray: function() {
-
         while (this.tray.hasChildNodes()) {
           this.tray.removeChild(this.tray.lastChild);
         }
+        startDrag.init();
     }
     // end of trayShuffler object
-  }
+  };
 
   //run these two functions as part of the 'Start' event
   // trayShuffler.cacheDOM();
   // trayShuffler.addPieces();
 
-
+  // startDrag.init();
+  dropZone.init();
 
   window.addEventListener('mouseup', function(e) {
     if (puzzleData.hint_active) {
@@ -360,7 +362,7 @@
       } else {
         timer.hide_modal();
       }
-    } 
+    }
   }, true);
 
 
