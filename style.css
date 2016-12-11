@@ -153,6 +153,11 @@ input[type="reset"]::-moz-focus-inner {
   background: #fa6282;
   color: #fffffc;
   text-transform: uppercase;
+  transition: background-color .5s;
+}
+
+.controls__btn:hover {
+  background-color: #3e3b68;
 }
 
 .finished__img {
@@ -321,6 +326,11 @@ input[type="reset"]::-moz-focus-inner {
   background: #76718E;
   font-size: 1rem;
   text-transform: uppercase;
+  transition: background-color .5s;
+}
+
+.timer__btn:hover {
+  background-color: #9e99b5;
 }
 
 .puzzle {
@@ -470,6 +480,11 @@ img[src*=piece].draggable {
   cursor: move;
   transition: all 0.1s ease-in-out;
   z-index: 1000;
+}
+
+img[src*=piece].draggable.dragging {
+  transform: scale(1.1);
+  transition: all 0.1s ease-in-out;
 }
 
 /* ROCHELL'S CSS FOR DRAG/DROP TESTING */
