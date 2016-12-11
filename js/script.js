@@ -157,6 +157,8 @@
       puzzleData.hints_left = 3;
     },
     stop_timer: function resetTimer() {
+      //reset tray 
+      trayShuffler.resetTray();
       // reset timer styles
       timer.reset_timer_styles();
       // reset puzzle data
