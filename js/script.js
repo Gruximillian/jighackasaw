@@ -359,7 +359,7 @@
       // Call shuffle and return images array
       var array = trayShuffler.shuffle();
       // Add pieces to the tray
-      for(var i = 0; i < array.length; i++) {
+      for (var i = 0; i < array.length; i++) {
         var node = document.createElement('img');
         var nodeID = array[i].id;
         node.setAttribute("id",nodeID);
@@ -378,7 +378,7 @@
     resetBoard: function() {
       var images = document.querySelectorAll('.honeycomb img');
 
-      for(var i= 0; i < images.length; i++) {
+      for (var i = 0; i < images.length; i++) {
           images[i].parentNode.removeChild(images[i]);
       }
     }
