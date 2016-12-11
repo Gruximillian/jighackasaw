@@ -100,6 +100,7 @@
     },
     start_timer: function startTimer() {
       trayShuffler.cacheDOM();
+      trayShuffler.resetTray();
       trayShuffler.addPieces();
       timer.puzzleTimer = window.setInterval(function(){
         timer.update_time();
@@ -330,12 +331,18 @@
 
       //add pieces to the tray
       for(var i =0; i < array.length; i++) {
-
         var node = document.createElement('img');
         node.src = array[i].source;
         // add to board
         this.tray.appendChild(node);
       }
+    },
+
+    resetTray: function() {
+
+        while (this.tray.hasChildNodes()) {
+          this.tray.removeChild(this.tray.lastChild);
+        }
     }
     // end of trayShuffler object
   }
