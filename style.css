@@ -14,7 +14,7 @@ body {
   margin: 0;
   font-size: 1rem;
   line-height: 1.25;
-  background: #222023;
+  background-color: #222023;
   color: #fffffc;
 }
 
@@ -114,7 +114,7 @@ input[type="reset"]::-moz-focus-inner {
   z-index: 10;
   display: flex;
   align-items: center;
-  background: hsla(280, 30%, 5%, 0.85);
+  background-color: hsla(280, 30%, 5%, 0.85);
   transition: all 0.3s ease-in-out;
 }
 
@@ -140,7 +140,7 @@ input[type="reset"]::-moz-focus-inner {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background: #fffffc;
+  background-color: #fffffc;
   width: 100%;
 }
 
@@ -150,14 +150,20 @@ input[type="reset"]::-moz-focus-inner {
 
 .controls__btn {
   max-width: 5rem;
-  background: #fa6282;
+  background-color: #fa6282;
   color: #fffffc;
   text-transform: uppercase;
   transition: background-color .5s;
 }
 
-.controls__btn:hover {
+.controls__btn:hover,
+.controls__btn:focus {
   background-color: #3e3b68;
+}
+.controls__btn:active,
+.btn:active {
+  transform: scaleY(0.97);
+  background-color: rgba(108, 74, 97, 0.8)
 }
 
 .finished__img {
@@ -166,7 +172,7 @@ input[type="reset"]::-moz-focus-inner {
   max-height: 20rem;
   position: relative;
   box-shadow: 0 3px 2px rgba(0, 0, 0, .1)
-  background: white;
+  background-color: white;
   text-align: center;
 }
 
@@ -208,8 +214,8 @@ input[type="reset"]::-moz-focus-inner {
   height: 2rem;
   position: relative;
   border-radius: 1.25em;
-  background: #c5c5d0;
-  transition: background 400ms 400ms ease-in-out;
+  background-color: #c5c5d0;
+  transition: background-color 400ms 400ms ease-in-out;
 }
 
 .controls__options--switch .switch__shape::before {
@@ -218,7 +224,7 @@ input[type="reset"]::-moz-focus-inner {
   left: 0;
   width: 2rem;
   height: 2rem;
-  background: #ff567a;
+  background-color: #fa6282;
   border-radius: 50%;
   box-shadow: 0.125em 0.0625em 0.125em rgba(0, 0, 0, .1);
   transition: transform 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -265,7 +271,7 @@ input[type="reset"]::-moz-focus-inner {
 /* checked styles: switch */
 
 .controls__options--switch input:checked ~ label .switch__shape {
-  background: #3e3b68;
+  background-color: #3e3b68;
 }
 
 .controls__options--switch input:checked ~ label .switch__shape::before {
@@ -323,7 +329,7 @@ input[type="reset"]::-moz-focus-inner {
 .timer__btn {
   display: none;
   margin-bottom: 0.5rem;
-  background: #76718E;
+  background-color: #76718E;
   font-size: 1rem;
   text-transform: uppercase;
   transition: background-color .5s;
@@ -495,4 +501,6 @@ img[src*=piece].draggable.dragging {
   width: 100%;
   margin:0 auto;
   position: relative;
+  padding: 1.5rem 0.75rem;
+  background-color: rgba(108, 74, 97, 0.3);
 }

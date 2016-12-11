@@ -165,7 +165,7 @@
       timer.reset_puzzle_data();
       // Reset timer text
       elements.time_msg.textContent = 'Want to start a new puzzle session?';
-      elements.time_display.textContent = '00:00';
+      elements.time_display.textContent = '';
       // Display restart button
       elements.restart_trigger.style.display = 'inline-block';
       window.clearInterval(timer.puzzleTimer);
