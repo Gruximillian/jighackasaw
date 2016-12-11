@@ -136,8 +136,19 @@
   <!-- Holds the images for the game -->
   <div id="tray" class="playing_tray"></div>
 
-  <!-- Sound effect when the time runs out -->
-  <audio id="timeover" src="sounds/runaway.mp3" preload="auto">Your browser does not support audio element!</audio>
+  <section class="sound-effects">
+    <!-- Sound effect when the time runs out -->
+    <!-- <audio id="timeover" src="sounds/runaway.mp3" preload="auto">Your browser does not support audio element!</audio> -->
+    <!-- Sound effect when the time runs out -->
+    <audio id="timeover" src="sounds/bat.mp3" preload="auto">Your browser does not support audio element!</audio>
+    <!-- Sound effect when the tile is placed on the board -->
+    <audio id="drop-tile-board" src="sounds/click.mp3" preload="auto">Your browser does not support audio element!</audio>
+    <!-- Sound effect when the tile drops on the tray -->
+    <audio id="drop-tile-tray" src="sounds/tiny_button.mp3" preload="auto">Your browser does not support audio element!</audio>
+    <!-- Sound effect when user solves the puzzle successfully -->
+    <audio id="solved-100" src="sounds/fireworks.mp3" preload="auto">Your browser does not support audio element!</audio>
+  </section>
+
 
   <script type="text/javascript" src="js/script.js"></script>
 </body>

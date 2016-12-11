@@ -25,6 +25,9 @@
       this.restart_trigger = document.getElementById('restart-trigger');
       this.stop_trigger = document.getElementById('stop-trigger');
       this.timeOver = document.getElementById('timeover');
+      this.dropTileBoard = document.getElementById('drop-tile-board');
+      this.dropTileTray = document.getElementById('drop-tile-tray');
+      this.puzzleSolvedSound = document.getElementById('solved-100');
     },
     events: function elEvents() {
       // Start timer
@@ -250,6 +253,7 @@
     alertResult: function() {
       var solvedPercentage = this.checkSolution();
       if ( solvedPercentage == 100 ) {
+        elements.puzzleSolvedSound.play();
         alert('Congratulations! You solved ' + solvedPercentage + '% of the puzzle!');
         // STOP TIMER AND OFFER A NEW GAME
       } else if ( solvedPercentage < 100 ) {
@@ -335,12 +339,18 @@
       if ( e.target.parentNode.id === 'tray' || e.target.id === "tray" ) {
         // whatever the difficulty, allow dropping into tray
         e.target.parentNode.appendChild(document.getElementById(movedPiece));
+        elements.dropTileTray.play();
       } else if ( !puzzleData.difficult && movedPiece === e.target.getAttribute("data-piece") ) {
         //easy mode, dropping allowed only into correct cells
         e.target.appendChild(document.getElementById(movedPiece));
+        elements.dropTileBoard.play();
       } else if ( puzzleData.difficult && e.target.tagName.toLowerCase() !== 'img' ) {
         // hard mode, dropping allowed on any cell; second condition prevents appending to the other image
         e.target.appendChild(document.getElementById(movedPiece));
+        elements.dropTileBoard.play();
+      } else {
+        // when a tile is released over the image and it goes back to tray
+        elements.dropTileTray.play();
       }
       // check if the tray is empty
       check.checkTray();
