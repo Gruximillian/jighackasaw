@@ -70,6 +70,7 @@
         // Show hint button
         elements.hint_trigger.style.display = 'inline-block';
       }
+      elements.start_trigger.parentNode.classList.add('temporary-hide'); 
       // If difficult is set to true, time limit is half the normal limit
       this.limit = puzzleData.difficult ? 5 : 10;
       // Seconds we're starting with
