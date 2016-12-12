@@ -125,7 +125,7 @@
           window.clearInterval(timer.puzzleTimer);
           return;
         }
-      }, 10);
+      }, 1000);
     },
     show_modal: function showHint() {
       puzzleData.hint_active = true;
@@ -148,8 +148,6 @@
       elements.stop_trigger.style.display = 'none';
       // Hide hint button
       elements.hint_trigger.style.display = 'none';
-      // Hide check solution button
-      elements.checkButton.style.display = 'none';
       // Show restart button
       elements.restart_trigger.style.display = 'inline-block';
       elements.start_trigger.parentNode.classList.remove('temporary-hide');
@@ -238,7 +236,6 @@
     alertResult: function() {
       var solvedPercentage = this.checkSolution();
       if ( solvedPercentage == 100 ) {
-        time.stop_timer();
         elements.puzzleSolvedSound.play();
         alert('Congratulations! You solved ' + solvedPercentage + '% of the puzzle!');
         celebration.init();
