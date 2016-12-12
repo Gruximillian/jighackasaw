@@ -105,7 +105,6 @@
       elements.innerhexSVG.setAttribute('transform', 'scale(' + percentLeft + ')');
     },
     start_timer: function startTimer() {
-
       trayShuffler.cacheDOM();
       trayShuffler.resetTray();
       trayShuffler.resetBoard();
@@ -120,14 +119,12 @@
           elements.time_msg.textContent = 'What a drag. You ran out of time. 😢';
           // elements.timeOver.play(); // Find an appropriate sound for this
           solver.init();
-          // timer.stop_timer();
           check.alertResult();
           solver.solve();
-          // timer.restart_puzzle();
           window.clearInterval(timer.puzzleTimer);
           return;
         }
-      }, 10);
+      }, 1000);
     },
     show_modal: function showHint() {
       puzzleData.hint_active = true;
