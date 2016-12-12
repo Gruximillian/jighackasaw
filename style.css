@@ -588,8 +588,8 @@ img[src*=piece].draggable.dragging {
 
 @-webkit-keyframes celebrate {
   0% {
-    -webkit-transform: rotate3d(1, 0, 0, 0);
-            transform: rotate3d(1, 0, 0, 0);
+    -webkit-transform: rotate3d(1, 2, 1, 0);
+            transform: rotate3d(1, 2, 1, 0);
   }
   100% {
     -webkit-transform: rotate3d(1, 2, 1, 360deg);
@@ -599,8 +599,8 @@ img[src*=piece].draggable.dragging {
 
 @keyframes celebrate {
   0% {
-    -webkit-transform: rotate3d(1, 0, 0, 0);
-            transform: rotate3d(1, 0, 0, 0);
+    -webkit-transform: rotate3d(1, 2, 1, 0);
+            transform: rotate3d(1, 2, 1, 0);
   }
   100% {
     -webkit-transform: rotate3d(1, 2, 1, 360deg);
