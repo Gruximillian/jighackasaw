@@ -125,7 +125,7 @@
           window.clearInterval(timer.puzzleTimer);
           return;
         }
-      }, 1000);
+      }, 10);
     },
     show_modal: function showHint() {
       puzzleData.hint_active = true;
