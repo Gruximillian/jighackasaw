@@ -14,6 +14,7 @@ html {
 body {
   margin: 0;
   font-size: 1rem;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   line-height: 1.25;
   background-color: #222023;
   color: rgb(244, 244, 244);
@@ -103,8 +104,8 @@ input[type="reset"]::-moz-focus-inner {
   min-width: 7rem;
   border: none;
   color: inherit;
-  font-family: sans-serif;
-  color: rgb(244, 244, 244);
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;   
+  color: currentColor;
   font-size: 1rem;
   cursor: pointer;
   overflow: hidden;
@@ -122,7 +123,6 @@ input[type="reset"]::-moz-focus-inner {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-
 
 /* ===STYLES FOR START MODAL === */
 
@@ -244,7 +244,6 @@ input[type="reset"]::-moz-focus-inner {
   text-align: center;
   font-size: 1.15rem;
   color: #4c4970;
-  font-family: 'Montserrat', sans-serif;
   letter-spacing: 0.02em;
 }
 
@@ -314,7 +313,6 @@ input[type="reset"]::-moz-focus-inner {
   padding: 0.25em;
   letter-spacing: 0.5px;
   font-size: 1.1em;
-  font-family: 'Open Sans Condensed', sans-serif;
   color: hsla(240, 50%, 20%, .8);
   text-transform: uppercase;
   -webkit-transform: translate(-50%, -50%);
@@ -355,10 +353,6 @@ input[type="reset"]::-moz-focus-inner {
           transform-origin: 50% 50%;
 }
 
-#hex-shape-inner.time-out {
-  fill: hsl(320, 50%, 50%);
-}
-
 #hex-svg-group {
   width: 7rem;
   height: 7rem;
@@ -372,7 +366,6 @@ input[type="reset"]::-moz-focus-inner {
   max-width: 15rem;
   padding: 2rem;
   margin-right: auto;
-  font-family: sans-serif;
   text-align: center;
   display: inline-block;
   vertical-align: top;
@@ -390,7 +383,7 @@ input[type="reset"]::-moz-focus-inner {
 }
 
 .timer__message time.time-running-out {
-  color: hsl(320, 50%, 50%);
+  color: #fa6282;
 }
 
 .timer__message time.time-out {

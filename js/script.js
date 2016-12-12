@@ -70,10 +70,6 @@
         // Show hint button
         elements.hint_trigger.style.display = 'inline-block';
       }
-      elements.start_trigger.parentNode.classList.add('temporary-hide');
-      if (elements.innerhexSVG.classList.contains('time-out')) {
-        elements.innerhexSVG.classList.remove('time-out');
-      }
       // If difficult is set to true, time limit is half the normal limit
       this.limit = puzzleData.difficult ? 5 : 10;
       // Seconds we're starting with
@@ -120,9 +116,8 @@
         timer.update_time();
         // Womp womp; time ran out?
         if (!timer.seconds_left && !timer.minutes_left) {
-          // Do something to show the user time has run out
-          // elements.innerhexSVG.classList.add('time-out');
-          // elements.time_msg.textContent = 'What a drag. You ran out of time. 😢';
+          timer.reset_timer_styles();
+          elements.time_msg.textContent = 'What a drag. You ran out of time. 😢';
           // elements.timeOver.play(); // Find an appropriate sound for this
           solver.init();
           // timer.stop_timer();
@@ -132,7 +127,7 @@
           window.clearInterval(timer.puzzleTimer);
           return;
         }
-      }, 1000);
+      }, 10);
     },
     show_modal: function showHint() {
       puzzleData.hint_active = true;
@@ -157,6 +152,8 @@
       elements.hint_trigger.style.display = 'none';
       // Hide check solution button
       elements.checkButton.style.display = 'none';
+      // Show restart button
+      elements.restart_trigger.style.display = 'inline-block';
       elements.start_trigger.parentNode.classList.remove('temporary-hide');
       // Reset scaled SVG
       elements.innerhexSVG.setAttribute('transform', 'scale(1)');
@@ -243,6 +240,7 @@
     alertResult: function() {
       var solvedPercentage = this.checkSolution();
       if ( solvedPercentage == 100 ) {
+        time.stop_timer();
         elements.puzzleSolvedSound.play();
         alert('Congratulations! You solved ' + solvedPercentage + '% of the puzzle!');
         celebration.init();
