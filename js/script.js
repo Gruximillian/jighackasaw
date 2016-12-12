@@ -124,11 +124,11 @@
           // elements.innerhexSVG.classList.add('time-out');
           // elements.time_msg.textContent = 'What a drag. You ran out of time. 😢';
           // elements.timeOver.play(); // Find an appropriate sound for this
-          // solver.init();
-          solver.solve();
+          solver.init();
+          // timer.stop_timer();
           check.alertResult();
-          timer.stop_timer();
-          timer.restart_puzzle();
+          solver.solve();
+          // timer.restart_puzzle();
           window.clearInterval(timer.puzzleTimer);
           return;
         }
@@ -284,6 +284,9 @@
         return !check.testCell(item);
       });
 
+      // console.log(pieces);
+      // console.log(misplaced);
+
       len = misplaced.length;
 
       function arrangeImages(n) {
@@ -297,7 +300,7 @@
           }
           window.clearTimeout(delay);
           arrangeImages(n);
-        }, 0.5);
+        }, 50);
       }
 
       arrangeImages(0);
